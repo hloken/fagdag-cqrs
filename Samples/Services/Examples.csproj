@@ -42,8 +42,8 @@
     <Compile Include="2. Cqrs Service Example\CustomerReadService.cs" />
     <Compile Include="2. Cqrs Service Example\CustomerWriteService.cs" />
     <Compile Include="1. Crud Service Example\ICustomerService.cs" />
-    <Compile Include="Append only models Example\AppendOnlyCommandHandler.cs" />
-    <Compile Include="Append only models Example\CommandHandler.cs" />
+    <Compile Include="Append only models Example\2. AppendOnlyCommandHandler.cs" />
+    <Compile Include="Append only models Example\1. CommandHandler.cs" />
     <Compile Include="Append only models Example\Stuff.cs" />
     <Compile Include="Cruft\ICustomer.cs" />
     <Compile Include="Cruft\ICustomerDetails.cs" />
