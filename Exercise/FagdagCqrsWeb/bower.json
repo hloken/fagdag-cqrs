@@ -1,0 +1,20 @@
+{
+  "name": "FagdagCqrsWeb",
+  "version": "0.0.0",
+  "homepage": "https://github.com/hloken/fagdag-cqrs",
+  "authors": [
+    "hloken <ext.hans.loken@aditro.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.15",
+    "grunt": "~0.4.5"
+  }
+}
