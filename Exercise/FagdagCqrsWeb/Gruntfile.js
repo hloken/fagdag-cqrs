@@ -80,7 +80,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('default', ['dev', 'watch']);
     grunt.registerTask('dev', ['bower', 'injector:dev']);
-    grunt.registerTask('test', ['bower', 'injector:test']);
     grunt.registerTask('server', ['bower', 'injector:dev', 'connect', 'watch']);
     grunt.registerTask('build', ['bower', 'injector:dev']);
 };
