@@ -1,0 +1,12 @@
+Setup
+
+grunt: npm install -g grunt-cli
+
+client project dependencies:
+	1. go to project root directory
+	2. install project dependencies with npm install
+	3. run grunt
+
+Solution dependencies:
+	1. go to package manger console
+	2. Click "Restore" 
