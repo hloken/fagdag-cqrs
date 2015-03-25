@@ -14,13 +14,7 @@ module.exports = function (grunt) {
                 src: ['Gruntfile.js', 'App/**/*.js']
             }
         },
-
-        ngtemplates: {
-            web: {
-                src: 'App/**/*.html',
-                dest: 'Content/Scripts/templates.js'
-            }
-        },
+        
         concat: {
             dev: {
                 options: {
@@ -63,15 +57,15 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
-                port: 3000,
+                port: 61476,
                 base: '.',
                 livereload: 35729
             },
             dev: {
                 options: {
                     open: {
-                        target: 'http://localhost:3000',
-                        appName: 'open'
+                        target: 'http://localhost:61476'//,
+                        //appName: 'open'
                     }
                 }
             }
