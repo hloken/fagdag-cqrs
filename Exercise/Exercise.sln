@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrsWeb", "FagdagCqrs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApi", "RestApi\RestApi.csproj", "{35460AA4-B94A-4B64-9418-7243EC3D2F01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Specs", "FagdagCqrs.Specs\FagdagCqrs.Specs.csproj", "{BBBDB72C-C81C-4CFD-88C4-2245B09A0B7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBBDB72C-C81C-4CFD-88C4-2245B09A0B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBBDB72C-C81C-4CFD-88C4-2245B09A0B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBBDB72C-C81C-4CFD-88C4-2245B09A0B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBBDB72C-C81C-4CFD-88C4-2245B09A0B7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
