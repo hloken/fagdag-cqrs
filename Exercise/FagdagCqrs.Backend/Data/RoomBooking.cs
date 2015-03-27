@@ -6,9 +6,6 @@ namespace RestApi.Data
     {
         public RoomType RoomType { get; set; }
         public DateTime FromDate { get; set; }
-    }
-
-    public enum RoomType
-    {
+        public int Duration { get; set; }
     }
 }

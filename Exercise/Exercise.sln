@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Backend", "Fagda
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Web", "FagdagCqrs.Web\FagdagCqrs.Web.csproj", "{F262B15D-EF63-4BDA-853B-C5AEC34286B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Tests", "FagdagCqrs.Tests\FagdagCqrs.Tests.csproj", "{C37424B6-FD2D-4793-8284-8BB2386605D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F262B15D-EF63-4BDA-853B-C5AEC34286B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F262B15D-EF63-4BDA-853B-C5AEC34286B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F262B15D-EF63-4BDA-853B-C5AEC34286B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
