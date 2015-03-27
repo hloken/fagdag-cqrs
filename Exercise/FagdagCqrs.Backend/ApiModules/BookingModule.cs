@@ -5,9 +5,9 @@ using RestApi.Data;
 
 namespace RestApi.ApiModules
 {
-    public class RoomBookingModule : NancyModule
+    public class BookingModule : NancyModule
     {
-        public RoomBookingModule()
+        public BookingModule()
             : base("api/booking")
         {
             Get["/{bookingId}"] = parameters =>

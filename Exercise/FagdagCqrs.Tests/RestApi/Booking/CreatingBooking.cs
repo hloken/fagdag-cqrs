@@ -1,7 +1,7 @@
 ﻿using System;
 using FagdagCqrs.Tests.Bdd;
 using FagdagCqrs.Tests.Drivers;
-using FluentAssert;
+using FluentAssertions;
 using Nancy;
 using Nancy.Testing;
 using RestApi.Contracts;
@@ -37,15 +37,15 @@ namespace FagdagCqrs.Tests.RestApi.Booking
         [Then]
         public void ShouldReturn200()
         {
-            _browserResponse.StatusCode.ShouldBeEqualTo(HttpStatusCode.OK);
+            _browserResponse.StatusCode.Should().Be(HttpStatusCode.OK);
         }
 
         [Then]
         public void ShouldHaveBookingInfo()
         {
-            _createdBooking.RoomType.ShouldBeEqualTo(_bookingToCreate.RoomType);
-            _createdBooking.FromDate.ShouldBeEqualTo(_bookingToCreate.FromDate);
-            _createdBooking.Duration.ShouldBeEqualTo(_bookingToCreate.Duration);
+            _createdBooking.RoomType.Should().Be(_bookingToCreate.RoomType);
+            _createdBooking.FromDate.Should().Be(_bookingToCreate.FromDate);
+            _createdBooking.Duration.Should().Be(_bookingToCreate.Duration);
         }
     }
 }
