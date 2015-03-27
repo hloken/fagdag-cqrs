@@ -1,6 +1,6 @@
 ﻿using Owin;
 
-namespace RestApi
+namespace RestApi.Bootstrapping
 {
     public class Startup
     {

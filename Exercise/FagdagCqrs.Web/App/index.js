@@ -9,8 +9,9 @@
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.
-            when('/rooms', { controller: 'RoomsController', templateUrl: 'App/Booking/Rooms.html' }).
-            otherwise({ redirectTo: '/rooms' });
+            when('/main', { controller: 'MainController', templateUrl: 'App/Main/main.html'}).
+            when('/booking', { controller: 'BookingsController', templateUrl: 'App/Booking/bookings.html' }).
+            otherwise({ redirectTo: '/main' });
     }]);
 
 //when('tenantinitialization', '/tenant/initialization', { controller: "TenantInitializationController", templateUrl: 'App/TenantInitialization/tenantinitialization.html' });

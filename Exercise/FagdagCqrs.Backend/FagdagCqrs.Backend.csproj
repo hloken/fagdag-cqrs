@@ -37,7 +37,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>RestApi.Program</StartupObject>
+    <StartupObject>RestApi.ConsoleHost</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Owin">
@@ -64,15 +64,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="IndexModule.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ApiModules\IndexModule.cs" />
+    <Compile Include="Bootstrapping\Bootstrapper.cs" />
+    <Compile Include="Bootstrapping\Startup.cs" />
+    <Compile Include="Data\Database.cs" />
+    <Compile Include="Data\RoomBooking.cs" />
+    <Compile Include="ConsoleHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

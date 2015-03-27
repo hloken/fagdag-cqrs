@@ -1,6 +1,6 @@
-﻿using Nancy;
+using Nancy;
 
-namespace RestApi
+namespace RestApi.Bootstrapping
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {

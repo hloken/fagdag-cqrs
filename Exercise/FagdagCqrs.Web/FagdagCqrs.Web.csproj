@@ -66,9 +66,11 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App\Booking\rooms.html" />
-    <Content Include="App\Booking\roomsController.js" />
+    <Content Include="App\Booking\bookings.html" />
+    <Content Include="App\Booking\bookingsController.js" />
     <Content Include="App\index.js" />
+    <Content Include="App\Main\main.html" />
+    <Content Include="App\Main\mainController.js" />
     <Content Include="bower_components\angular-resource\angular-resource.js" />
     <Content Include="bower_components\angular-resource\angular-resource.min.js" />
     <Content Include="bower_components\angular-resource\index.js" />

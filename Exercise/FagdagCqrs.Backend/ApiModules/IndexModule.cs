@@ -1,6 +1,6 @@
 ﻿using Nancy;
 
-namespace RestApi
+namespace RestApi.ApiModules
 {
     public class IndexModule : NancyModule
     {

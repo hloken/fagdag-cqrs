@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.Owin.Hosting;
+using RestApi.Bootstrapping;
 
 namespace RestApi
 {
-    class Program
+    class ConsoleHost
     {
         static void Main(string[] args)
         {
