@@ -65,16 +65,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModules\BookingModule.cs" />
-    <Compile Include="ApiModules\IndexModule.cs" />
     <Compile Include="ApiModules\RoomTypeModule.cs" />
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Bootstrapping\Startup.cs" />
     <Compile Include="Contracts\IdWrapper.cs" />
+    <Compile Include="Contracts\RoomBookingInfo.cs" />
+    <Compile Include="Contracts\RoomType.cs" />
     <Compile Include="Contracts\RoomTypeInfo.cs" />
     <Compile Include="Data\Database.cs" />
     <Compile Include="Data\RoomBooking.cs" />
     <Compile Include="ConsoleHost.cs" />
-    <Compile Include="Data\RoomType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

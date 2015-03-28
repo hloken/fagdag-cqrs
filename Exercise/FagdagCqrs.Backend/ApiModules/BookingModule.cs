@@ -1,6 +1,7 @@
 ﻿using System;
 using Nancy;
 using Nancy.ModelBinding;
+using RestApi.Contracts;
 using RestApi.Data;
 
 namespace RestApi.ApiModules
@@ -15,19 +16,27 @@ namespace RestApi.ApiModules
                 Guid bookingId = parameters.bookingId;
 
                 if (Database.RoomBookings.ContainsKey(bookingId))
-                    return Response.AsJson(Database.RoomBookings[bookingId]);
+                {
+                    var roomBooking = Database.RoomBookings[bookingId];
+                    var roomBookingInfo = new RoomBookingInfo(
+                        roomBooking.Id, roomBooking.RoomType, roomBooking.FromDate, roomBooking.Duration);
+
+                    return Response.AsJson(roomBookingInfo);
+                }
                 
                 return HttpStatusCode.NotFound;
             };
 
             Post[""] = parameters =>
             {
-                var roomBookingToCreate = this.Bind<RoomBooking>();
+                var roomBookingToCreate = this.Bind<RoomBookingInfo>();
 
                 var roomBookingId = Guid.NewGuid();
-                Database.RoomBookings.Add(roomBookingId, roomBookingToCreate);
+                var roomBooking = RoomBooking.Create(roomBookingId, roomBookingToCreate.RoomType, roomBookingToCreate.FromDate, roomBookingToCreate.Duration);
 
-                return Response.AsJson(new {id = roomBookingId});
+                Database.RoomBookings.Add(roomBookingId, roomBooking); 
+
+                return Response.AsJson(new IdWrapper(roomBookingId));
             };
         }     
     }

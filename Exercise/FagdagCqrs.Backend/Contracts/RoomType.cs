@@ -1,4 +1,4 @@
-﻿namespace RestApi.Data
+namespace RestApi.Contracts
 {
     public enum RoomType
     {
