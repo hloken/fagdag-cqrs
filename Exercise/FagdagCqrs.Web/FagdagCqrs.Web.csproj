@@ -67,13 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\Booking\bookings.html" />
+    <Content Include="App\Booking\bookingService.js" />
     <Content Include="App\Booking\bookingsController.js" />
+    <Content Include="App\Booking\newBooking.html" />
+    <Content Include="App\Booking\newBookingController.js" />
     <Content Include="App\index.js" />
     <Content Include="App\Main\main.html" />
     <Content Include="App\Main\mainController.js" />
-    <Content Include="bower_components\angular-resource\angular-resource.js" />
-    <Content Include="bower_components\angular-resource\angular-resource.min.js" />
-    <Content Include="bower_components\angular-resource\index.js" />
+    <Content Include="App\room\roomTypeService.js" />
+    <Content Include="App\settings.js" />
     <Content Include="bower_components\angular-route\angular-route.js" />
     <Content Include="bower_components\angular-route\angular-route.min.js" />
     <Content Include="bower_components\angular-route\index.js" />
@@ -83,6 +85,11 @@
     <Content Include="bower_components\angular\bower.json" />
     <Content Include="bower_components\angular\package.json" />
     <Content Include="bower_components\angular\README.md" />
+    <Content Include="bower_components\underscore\.gitignore" />
+    <Content Include="bower_components\underscore\karma.conf-sauce.js" />
+    <Content Include="bower_components\underscore\karma.conf.js" />
+    <Content Include="bower_components\underscore\underscore-min.js" />
+    <Content Include="bower_components\underscore\underscore.js" />
     <Content Include="Gruntfile.js" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
@@ -91,13 +98,15 @@
     <Content Include="bower_components\angular-route\bower.json" />
     <Content Include="bower_components\angular-route\package.json" />
     <Content Include="bower_components\angular-route\README.md" />
-    <Content Include="bower_components\angular-resource\.bower.json" />
-    <Content Include="bower_components\angular-resource\angular-resource.min.js.map" />
-    <Content Include="bower_components\angular-resource\bower.json" />
-    <Content Include="bower_components\angular-resource\package.json" />
-    <Content Include="bower_components\angular-resource\README.md" />
     <Content Include="bower.json" />
     <Content Include="package.json" />
+    <Content Include="bower_components\underscore\.eslintrc" />
+    <Content Include="bower_components\underscore\bower.json" />
+    <Content Include="bower_components\underscore\component.json" />
+    <Content Include="bower_components\underscore\LICENSE" />
+    <Content Include="bower_components\underscore\package.json" />
+    <Content Include="bower_components\underscore\README.md" />
+    <Content Include="bower_components\underscore\underscore-min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

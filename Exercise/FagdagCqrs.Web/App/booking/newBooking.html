@@ -1,0 +1,23 @@
+﻿<h3>Book a room</h3>
+<form name="roomBookingForm">
+    <fieldset>
+        <span>
+            <label>Room type:</label>
+            <select name="roomType" ng-model="newBooking.roomType" ng-options="roomType.value as (roomType.name) for roomType in roomTypes" required>
+                <option value="">{{'None'}}</option>
+            </select>
+        </span>
+        <span>
+            <label>From date:</label>
+            <input name="fromDate" type="date" ng-model="newBooking.fromDate" required/>
+        </span>
+        <span>
+            <label>Number of nights:</label>
+            <input name="duration" type="number" ng-model="newBooking.duration" required/>
+        </span>
+    </fieldset>
+    <label ng-show="errorMessage">{{errorMessage}}</label><br/>
+    <button type="button" ng-click="send()">Book da room</button>
+</form>
+<a href="#/booking">Back...</a>
+<div ng-show="isLoading">Loading stuff...</div>

@@ -43,6 +43,9 @@
     <Reference Include="Microsoft.Owin">
       <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Owin.Cors">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin.Host.HttpListener">
       <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.3.0.1\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
     </Reference>
@@ -61,12 +64,16 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModules\BookingModule.cs" />
     <Compile Include="ApiModules\RoomTypeModule.cs" />
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
+    <Compile Include="Bootstrapping\FagdagCqrsCorsProvider.cs" />
     <Compile Include="Bootstrapping\Startup.cs" />
     <Compile Include="Contracts\IdWrapper.cs" />
     <Compile Include="Contracts\RoomBookingInfo.cs" />

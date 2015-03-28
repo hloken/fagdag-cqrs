@@ -1,4 +1,6 @@
-﻿using Owin;
+﻿using System.Web.Cors;
+using Microsoft.Owin.Cors;
+using Owin;
 
 namespace RestApi.Bootstrapping
 {
@@ -6,6 +8,7 @@ namespace RestApi.Bootstrapping
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(new CorsOptions { CorsEngine = new CorsEngine(), PolicyProvider = new FagdagCqrsCorsProvider() });
             app.UseNancy();
         }
     }

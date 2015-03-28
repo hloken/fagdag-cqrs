@@ -8,7 +8,7 @@ namespace FagdagCqrs.Tests.Drivers
 {
     public static class RoomTypeDriver
     {
-        private const string _url = "api/room/types";
+        private const string _url = "api/roomtypes";
 
         public static RoomTypeInfo[] GetRoomTypeInfos(Browser browser)
         {

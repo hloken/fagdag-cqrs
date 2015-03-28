@@ -5,7 +5,6 @@ using FluentAssertions;
 using Nancy;
 using Nancy.Testing;
 using RestApi.Contracts;
-using RestApi.Data;
 
 namespace FagdagCqrs.Tests.RestApi.Booking
 {

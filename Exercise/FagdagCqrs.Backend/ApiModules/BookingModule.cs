@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Nancy;
 using Nancy.ModelBinding;
 using RestApi.Contracts;
@@ -11,6 +12,14 @@ namespace RestApi.ApiModules
         public BookingModule()
             : base("api/booking")
         {
+            Get[""] = parameters =>
+            {
+                var bookings = Database.RoomBookings.Values.Select(MapToRoomBookingInfo)
+                     .ToArray();
+
+                return Response.AsJson(bookings);
+            };
+
             Get["/{bookingId}"] = parameters =>
             {
                 Guid bookingId = parameters.bookingId;
@@ -18,26 +27,45 @@ namespace RestApi.ApiModules
                 if (Database.RoomBookings.ContainsKey(bookingId))
                 {
                     var roomBooking = Database.RoomBookings[bookingId];
-                    var roomBookingInfo = new RoomBookingInfo(
-                        roomBooking.Id, roomBooking.RoomType, roomBooking.FromDate, roomBooking.Duration);
 
-                    return Response.AsJson(roomBookingInfo);
+                    return Response.AsJson(
+                        MapToRoomBookingInfo(roomBooking));
                 }
-                
+
                 return HttpStatusCode.NotFound;
             };
 
             Post[""] = parameters =>
             {
-                var roomBookingToCreate = this.Bind<RoomBookingInfo>();
+                var bookingToCreate = this.Bind<RoomBookingInfo>();
 
-                var roomBookingId = Guid.NewGuid();
-                var roomBooking = RoomBooking.Create(roomBookingId, roomBookingToCreate.RoomType, roomBookingToCreate.FromDate, roomBookingToCreate.Duration);
+                var newBookingId = Guid.NewGuid();
+                Database.RoomBookings.Add(newBookingId, MapToRoomBooking(newBookingId, bookingToCreate)); 
 
-                Database.RoomBookings.Add(roomBookingId, roomBooking); 
-
-                return Response.AsJson(new IdWrapper(roomBookingId));
+                return Response.AsJson(new IdWrapper(newBookingId));
             };
-        }     
+        }
+
+        private static RoomBooking MapToRoomBooking(Guid roomBookingId, RoomBookingInfo roomBookingToCreate)
+        {
+            var roomBooking = RoomBooking.Create(
+                roomBookingId, 
+                roomBookingToCreate.RoomType, 
+                roomBookingToCreate.FromDate,
+                roomBookingToCreate.Duration);
+
+            return roomBooking;
+        }
+
+        private static RoomBookingInfo MapToRoomBookingInfo(RoomBooking roomBooking)
+        {
+            var roomBookingInfo = new RoomBookingInfo(
+                roomBooking.Id, 
+                roomBooking.RoomType, 
+                roomBooking.FromDate, 
+                roomBooking.Duration);
+
+            return roomBookingInfo;
+        }
     }
 }

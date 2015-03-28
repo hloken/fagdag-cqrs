@@ -1,43 +1,18 @@
-﻿angular.module('fagdagCqrsHotel').controller('BookingsController', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
-    $scope.hello = 'Hello!';
-    //$scope.isLoading = true;
-    //$scope.companyId = $routeParams.companyId;
-    //$scope.backUrl = links.getLocation('unions', { companyId: $scope.companyId });
+﻿angular.module('fagdagCqrsHotel').controller('BookingsController', ['$scope', '$location', '$routeParams', 'BookingService', 'RoomTypeService', '$q', function ($scope, $location, $routeParams, bookingService, roomTypeService, $q) {
+    $scope.isLoading = true;
+    $scope.backUrl = '/main';
 
-    //companyService.get({ companyId: $scope.companyId }).$promise.then(function (company) {
-    //    paycodeService.getUnionPaycodes(company.id).then(function (paycodes) {
-    //        $scope.paycodes = paycodes;
-    //        $scope.union = { useAmount: true };
-    //        if ($scope.paycodes.length > 0) {
-    //            $scope.union.paycodeId = $scope.paycodes[0].id;
-    //        }
-    //        $scope.isLoading = false;
-    //    });
-    //});
-    //$scope.isDuesDeductionRateValid = function (value) {
-    //    return unionValidationRules.isDuesDeductionRateValid(value, $scope.union);
-    //};
+    var roomTypePromise = roomTypeService.getRoomTypes(),
+        bookingsPromise = bookingService.getBookings();
+    
+    $q.all([roomTypePromise, bookingsPromise]).then(function (results) {
+        $scope.roomTypesMap = roomTypeService.mapRoomTypesToMap(results[0]);
+        $scope.bookings = results[1];
 
-    //$scope.isDuesDeductionAmountValid = function (value) {
-    //    return unionValidationRules.isDuesDeductionAmountValid(value, $scope.union);
-    //};
+        _.each($scope.bookings, function(booking) {
+            booking.roomTypeName = $scope.roomTypesMap[booking.roomType];
+        });
 
-    //$scope.isDuesMinAmountValid = function (value) {
-    //    return unionValidationRules.isDuesMinAmountValid(value, $scope.union);
-    //};
-
-    //$scope.isDuesMaxAmountValid = function (value) {
-    //    return unionValidationRules.isDuesMaxAmountValid(value, $scope.union);
-    //};
-
-    //$scope.save = function () {
-    //    if ($scope.editUnionForm.$invalid) {
-    //        return;
-    //    }
-    //    $scope.isSaving = true;
-    //    unionService.createUnion($scope.companyId, $scope.union).then(function () {
-    //        $scope.isSaving = false;
-    //        $location.url($scope.backUrl);
-    //    });
-    //};
+        $scope.isLoading = false;
+    });
 }]);

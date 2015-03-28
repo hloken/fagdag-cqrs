@@ -1,6 +1,7 @@
 ﻿using FagdagCqrs.Tests.Bdd;
 using Nancy.Testing;
 using RestApi.Bootstrapping;
+using RestApi.Data;
 
 namespace FagdagCqrs.Tests.RestApi
 {
@@ -10,13 +11,6 @@ namespace FagdagCqrs.Tests.RestApi
 
         protected RestApiBddTestBase()
         {
-            //Container = CommonBootstrapping.CreateContainer();
-            //Bus = Substitute.For<IBus, IManageMessageHeaders>();
-            //Container.Register(Component.For<IBus>().Instance(Bus));
-            //Container.Register(Component.For<DbConnection>().Named("TestConnection").IsDefault().UsingFactoryMethod(m => SqlConnectionHelper.GetOpenConnection(), true));
-            //Container.Register(Classes.FromAssemblyContaining<HandleSalaryHasChanged>().BasedOn(typeof(IHandleMessages<>)).WithServiceSelf().LifestyleTransient());
-
-            //var metalPayNancyBootstrapper = new TestNancyBootstrapper(Container, ConfigureContainer);
             _browser = new Browser(new Bootstrapper());
         }
 
@@ -25,5 +19,9 @@ namespace FagdagCqrs.Tests.RestApi
             get { return _browser; }
         }
 
+        protected override void Given()
+        {
+            Database.Drop();
+        }
     }
 }

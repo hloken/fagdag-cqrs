@@ -9,7 +9,7 @@ namespace RestApi.ApiModules
     public class RoomTypeModule : NancyModule
     {
         public RoomTypeModule()
-            : base("api/room/types")
+            : base("api/roomtypes")
         {
             Get[""] = parameters =>
             {

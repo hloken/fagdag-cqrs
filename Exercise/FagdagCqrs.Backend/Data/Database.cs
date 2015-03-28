@@ -11,5 +11,10 @@ namespace RestApi.Data
         {
             get { return _roomBookings; }
         }
+
+        internal static void Drop()
+        {
+            RoomBookings.Clear();
+        }
     }
 }

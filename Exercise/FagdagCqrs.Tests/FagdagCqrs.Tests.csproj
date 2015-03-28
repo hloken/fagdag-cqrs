@@ -64,6 +64,7 @@
     <Compile Include="Drivers\RoomTypeDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestApi\Booking\CreatingBooking.cs" />
+    <Compile Include="RestApi\Booking\RetrievingAllBookings.cs" />
     <Compile Include="RestApi\RestApiBddTestBase.cs" />
     <Compile Include="RestApi\Room\RetrieRoomTypes.cs" />
   </ItemGroup>

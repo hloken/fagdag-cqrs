@@ -56,10 +56,10 @@
     <Compile Include="Arguments\RomReservasjon.cs" />
     <Compile Include="Drivers\BookingGuiDriver.cs" />
     <Compile Include="Drivers\WebDriverInstanceWrapper.cs" />
-    <Compile Include="Features\CustomerBookingARoom.feature.cs">
+    <Compile Include="Features\KundeReservererEtRom.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CustomerBookingARoom.feature</DependentUpon>
+      <DependentUpon>KundeReservererEtRom.feature</DependentUpon>
     </Compile>
     <Compile Include="Helpers\WebElementExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,9 +71,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\CustomerBookingARoom.feature">
+    <None Include="Features\KundeReservererEtRom.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CustomerBookingARoom.feature.cs</LastGenOutput>
+      <LastGenOutput>KundeReservererEtRom.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

@@ -4,6 +4,11 @@ namespace RestApi.Contracts
 {
     public class RoomBookingInfo
     {
+        // Needed by Nancy Bind<>
+        public RoomBookingInfo()
+        {
+        }
+
         public RoomBookingInfo(Guid? id, RoomType roomType, DateTime fromDate, int duration)
         {
             Id = id;

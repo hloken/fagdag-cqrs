@@ -25,7 +25,7 @@ namespace FagdagCqrs.Specs.Features
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "CustomerBookingARoom.feature"
+#line 1 "KundeReservererEtRom.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
