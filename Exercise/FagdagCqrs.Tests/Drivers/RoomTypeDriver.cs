@@ -18,8 +18,8 @@ namespace FagdagCqrs.Tests.Drivers
         public static void ShouldContainRoomType(this IEnumerable<RoomTypeInfo> roomTypeInfos, RoomType roomType)
         {
             roomTypeInfos.Should().Contain(rt =>
-                rt.Name == roomType.ToString() &&
-                rt.Value == (int)roomType);
+                rt.Title == roomType.ToString() &&
+                rt.Id == (int)roomType);
         }
     }
 }

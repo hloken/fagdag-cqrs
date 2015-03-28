@@ -19,8 +19,8 @@ namespace RestApi.ApiModules
                     (from kvp in enumDictionary
                      select new RoomTypeInfo
                      {
-                         Value = kvp.Key, 
-                         Name = kvp.Value
+                         Id = kvp.Key, 
+                         Title = kvp.Value
                      })
                      .ToArray();
 

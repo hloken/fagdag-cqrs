@@ -1,28 +1,30 @@
-﻿<h3>Current bookings</h3>
-<section>
-    <div ng-repeat="booking in bookings">
-        <fieldset>
-            <div>
-                <label>Booking id:</label>
-                <span>{{booking.id}}</span>
-            </div>
-            <div>
-                <label>Room type:</label>
-                <span>{{booking.roomTypeName}}</span>
-            </div>
-            <div>
-                <label>From date:</label>
-                <span>{{booking.fromDate | date}}</span>
-            </div>
-            <div>
-                <label>Duration:</label>
-                <span>{{booking.duration}} days</span>
-            </div>
-        </fieldset>
-    </div>
-    <label ng-show="bookings.length == 0">No bookings in system</label>
-</section>
-<a href="#/booking/new">Book a room</a>
-<br/>
-<a href="#/main">Back...</a>
-<div ng-show="isLoading">Loading bookings...</div>
+﻿<div ng-show="!isLoading" class="loaded">
+    <h3>Current bookings</h3>
+    <section>
+        <div ng-repeat="booking in bookings">
+            <fieldset>
+                <div>
+                    <label>Booking id:</label>
+                    <span>{{booking.id}}</span>
+                </div>
+                <div>
+                    <label>Room type:</label>
+                    <span>{{booking.roomTypeName}}</span>
+                </div>
+                <div>
+                    <label>From date:</label>
+                    <span>{{booking.fromDate | date}}</span>
+                </div>
+                <div>
+                    <label>Duration:</label>
+                    <span>{{booking.duration}} days</span>
+                </div>
+            </fieldset>
+        </div>
+        <label ng-show="bookings.length == 0">No bookings in system</label>
+    </section>
+    <a href="#/booking/new">Book a room</a>
+    <br/>
+    <a href="#/main">Back...</a>
+</div>
+<div ng-show="isLoading" class="loaded">Loading bookings...</div>

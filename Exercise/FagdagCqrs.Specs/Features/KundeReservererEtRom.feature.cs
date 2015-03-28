@@ -88,7 +88,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 10
  testRunner.When("jeg reserverer et rom", ((string)(null)), table1, "Når ");
 #line 13
- testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Så ");
+ testRunner.Then("skal jeg se totalprisen før bestillingen bekreftes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Så ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -10,4 +10,4 @@ Scenario: Reservere rom av en gitt type
 	Når jeg reserverer et rom
 	| Romtype      | Fra dato  | Lengde på opphold |
 	| Junior Suite | 20-1-2015 | 5                 |
-	Så the result should be 120 on the screen
+	Så skal jeg se totalprisen før bestillingen bekreftes

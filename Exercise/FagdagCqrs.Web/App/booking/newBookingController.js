@@ -14,7 +14,7 @@ angular.module('fagdagCqrsHotel').controller('NewBookingController', ['$scope', 
         $scope.isLoading = false;
     });
 
-    $scope.send = function() {
+    $scope.save = function() {
         if ($scope.roomBookingForm.$invalid ||
             $scope.newBooking.duration < 1) {
             $scope.errorMessage = 'Bad booking, fix it';
