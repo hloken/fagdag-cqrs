@@ -1,10 +1,10 @@
 ﻿using System;
+using FagdagCqrs.Backend.Contracts;
 using FagdagCqrs.Tests.Bdd;
 using FagdagCqrs.Tests.Drivers;
 using FluentAssertions;
 using Nancy;
 using Nancy.Testing;
-using RestApi.Contracts;
 
 namespace FagdagCqrs.Tests.RestApi.Booking
 {

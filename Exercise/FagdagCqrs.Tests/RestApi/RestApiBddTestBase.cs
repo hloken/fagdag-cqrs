@@ -1,7 +1,8 @@
-﻿using FagdagCqrs.Tests.Bdd;
+﻿using FagdagCqrs.Backend.Bootstrapping;
+using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Tests.Bdd;
 using Nancy.Testing;
-using RestApi.Bootstrapping;
-using RestApi.Data;
+using NUnit.Framework;
 
 namespace FagdagCqrs.Tests.RestApi
 {
@@ -19,7 +20,8 @@ namespace FagdagCqrs.Tests.RestApi
             get { return _browser; }
         }
 
-        protected override void Given()
+        [SetUp]
+        protected void TestSetup()
         {
             Database.Drop();
         }

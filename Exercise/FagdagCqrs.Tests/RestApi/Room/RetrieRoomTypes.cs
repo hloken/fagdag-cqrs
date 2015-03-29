@@ -1,7 +1,6 @@
-﻿using FagdagCqrs.Tests.Bdd;
+﻿using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Tests.Bdd;
 using FagdagCqrs.Tests.Drivers;
-using RestApi.Contracts;
-using RestApi.Data;
 
 namespace FagdagCqrs.Tests.RestApi.Room
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RestApi.Data
+namespace FagdagCqrs.Backend.Data
 {
     public static class Database
     {

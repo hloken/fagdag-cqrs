@@ -6,8 +6,16 @@
 		jeg skal få en bekreftelse på bestillingen på mail
 		det skal reserveres et beløp som tilsvarer 50% av totalprisen på rommet på min bankkonto
 		
-Scenario: Reservere rom av en gitt type
+Scenario: Reservere rom av en gitt type skal se totalpris før jeg bekrefter
 	Når jeg reserverer et rom
 	| Romtype      | Fra dato  | Lengde på opphold |
 	| Junior Suite | 20-1-2015 | 5                 |
 	Så skal jeg se totalprisen før bestillingen bekreftes
+
+Scenario: Reservere rom av en gitt type skal se reservasjon i listen
+	Når jeg reserverer et rom
+	| Romtype      | Fra dato  | Lengde på opphold |
+	| Junior Suite | 20-1-2015 | 5                 |
+	Så skal jeg se reservasjonen i reservasjons listen
+	| Romtype      | Fra dato  | Lengde på opphold |
+	| Junior Suite | 20-1-2015 | 5                 |

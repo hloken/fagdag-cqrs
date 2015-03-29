@@ -3,7 +3,6 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net.Http;
 using BoDi;
-using FagdagCqrs.Specs.WebTests;
 using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 

@@ -1,7 +1,7 @@
 ﻿using System;
-using RestApi.Contracts;
+using FagdagCqrs.Backend.Contracts;
 
-namespace RestApi.Data
+namespace FagdagCqrs.Backend.Data
 {
     public class RoomBooking
     {

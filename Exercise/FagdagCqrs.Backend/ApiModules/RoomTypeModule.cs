@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FagdagCqrs.Backend.Contracts;
 using Nancy;
-using RestApi.Contracts;
 
-namespace RestApi.ApiModules
+namespace FagdagCqrs.Backend.ApiModules
 {
     public class RoomTypeModule : NancyModule
     {

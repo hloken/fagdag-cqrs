@@ -70,10 +70,10 @@ det skal reserveres et beløp som tilsvarer 50% av totalprisen på rommet på mi
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Reservere rom av en gitt type")]
-        public virtual void ReservereRomAvEnGittType()
+        [NUnit.Framework.DescriptionAttribute("Reservere rom av en gitt type skal se totalpris før jeg bekrefter")]
+        public virtual void ReservereRomAvEnGittTypeSkalSeTotalprisForJegBekrefter()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reservere rom av en gitt type", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reservere rom av en gitt type skal se totalpris før jeg bekrefter", ((string[])(null)));
 #line 9
 this.ScenarioSetup(scenarioInfo);
 #line hidden
@@ -89,6 +89,39 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.When("jeg reserverer et rom", ((string)(null)), table1, "Når ");
 #line 13
  testRunner.Then("skal jeg se totalprisen før bestillingen bekreftes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Så ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Reservere rom av en gitt type skal se reservasjon i listen")]
+        public virtual void ReservereRomAvEnGittTypeSkalSeReservasjonIListen()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Reservere rom av en gitt type skal se reservasjon i listen", ((string[])(null)));
+#line 15
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Romtype",
+                        "Fra dato",
+                        "Lengde på opphold"});
+            table2.AddRow(new string[] {
+                        "Junior Suite",
+                        "20-1-2015",
+                        "5"});
+#line 16
+ testRunner.When("jeg reserverer et rom", ((string)(null)), table2, "Når ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Romtype",
+                        "Fra dato",
+                        "Lengde på opphold"});
+            table3.AddRow(new string[] {
+                        "Junior Suite",
+                        "20-1-2015",
+                        "5"});
+#line 19
+ testRunner.Then("skal jeg se reservasjonen i reservasjons listen", ((string)(null)), table3, "Så ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -1,4 +1,4 @@
-﻿namespace FagdagCqrs.Specs.WebTests
+﻿namespace FagdagCqrs.Specs
 {
     public static class Settings
     {

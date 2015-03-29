@@ -1,7 +1,7 @@
 ﻿<div ng-show="!isLoading" class="loaded">
     <h3>Current bookings</h3>
     <section>
-        <div ng-repeat="booking in bookings">
+        <div ng-repeat="booking in bookings" class="booking-info">
             <fieldset>
                 <div>
                     <label>Booking id:</label>
@@ -9,15 +9,15 @@
                 </div>
                 <div>
                     <label>Room type:</label>
-                    <span>{{booking.roomTypeName}}</span>
+                    <span id="roomTypeName">{{booking.roomTypeName}}</span>
                 </div>
                 <div>
                     <label>From date:</label>
-                    <span>{{booking.fromDate | date}}</span>
+                    <span id="fromDate">{{booking.fromDate | date}}</span>
                 </div>
                 <div>
                     <label>Duration:</label>
-                    <span>{{booking.duration}} days</span>
+                    <span id="duration">{{booking.duration}}</span> days
                 </div>
             </fieldset>
         </div>

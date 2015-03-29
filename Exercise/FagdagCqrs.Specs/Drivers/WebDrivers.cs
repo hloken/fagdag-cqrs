@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Drawing;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.PhantomJS;
 
-namespace FagdagCqrs.Specs.WebTests
+namespace FagdagCqrs.Specs.Drivers
 {
     public static class WebDrivers
     {

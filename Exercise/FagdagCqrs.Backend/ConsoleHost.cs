@@ -1,8 +1,8 @@
 ﻿using System;
+using FagdagCqrs.Backend.Bootstrapping;
 using Microsoft.Owin.Hosting;
-using RestApi.Bootstrapping;
 
-namespace RestApi
+namespace FagdagCqrs.Backend
 {
     class ConsoleHost
     {

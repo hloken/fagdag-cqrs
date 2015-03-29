@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
+using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Data;
 using Nancy;
 using Nancy.ModelBinding;
-using RestApi.Contracts;
-using RestApi.Data;
 
-namespace RestApi.ApiModules
+namespace FagdagCqrs.Backend.ApiModules
 {
     public class BookingModule : NancyModule
     {

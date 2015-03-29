@@ -1,6 +1,6 @@
 using Nancy;
 
-namespace RestApi.Bootstrapping
+namespace FagdagCqrs.Backend.Bootstrapping
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {

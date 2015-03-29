@@ -2,7 +2,7 @@
 using Microsoft.Owin.Cors;
 using Owin;
 
-namespace RestApi.Bootstrapping
+namespace FagdagCqrs.Backend.Bootstrapping
 {
     public class Startup
     {

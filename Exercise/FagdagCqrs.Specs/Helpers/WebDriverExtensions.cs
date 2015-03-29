@@ -12,6 +12,11 @@ namespace FagdagCqrs.Specs.Helpers
 {
     public static class WebDriverExtensions
     {
+        public static T NavigateAndRefresh<T>(this IWebDriver webDriver, params object[] additionalPageParams) where T : Page
+        {
+            return Navigate(webDriver, Activator.CreateInstance(typeof(T), new object[] { webDriver }.Concat(additionalPageParams).ToArray()) as T, true);
+        }
+
         public static T Navigate<T>(this IWebDriver webDriver, params object[] additionalPageParams) where T : Page
         {
             return Navigate(webDriver, Activator.CreateInstance(typeof(T), new object[] { webDriver }.Concat(additionalPageParams).ToArray()) as T);

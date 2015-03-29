@@ -1,4 +1,4 @@
-﻿namespace RestApi.Contracts
+﻿namespace FagdagCqrs.Backend.Contracts
 {
     public class RoomTypeInfo
     {

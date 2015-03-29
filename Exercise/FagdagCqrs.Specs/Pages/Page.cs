@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Linq;
 using FagdagCqrs.Specs.AngularBindingAdapters;
 using FagdagCqrs.Specs.Helpers;
-using FagdagCqrs.Specs.WebTests;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 

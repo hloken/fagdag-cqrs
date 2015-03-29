@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using FagdagCqrs.Backend.Contracts;
 using FluentAssertions;
 using Nancy.Testing;
-using RestApi.Contracts;
 
 namespace FagdagCqrs.Tests.Drivers
 {

@@ -3,7 +3,7 @@ using System.Web.Cors;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 
-namespace RestApi.Bootstrapping
+namespace FagdagCqrs.Backend.Bootstrapping
 {
     public class FagdagCqrsCorsProvider : ICorsPolicyProvider
     {

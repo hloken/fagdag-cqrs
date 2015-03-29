@@ -7,8 +7,8 @@
     <ProjectGuid>{35460AA4-B94A-4B64-9418-7243EC3D2F01}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestApi</RootNamespace>
-    <AssemblyName>RestApi</AssemblyName>
+    <RootNamespace>FagdagCqrs.Backend</RootNamespace>
+    <AssemblyName>FagdagCqrs.Backend</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -37,7 +37,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>RestApi.ConsoleHost</StartupObject>
+    <StartupObject>FagdagCqrs.Backend.ConsoleHost</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Owin">
