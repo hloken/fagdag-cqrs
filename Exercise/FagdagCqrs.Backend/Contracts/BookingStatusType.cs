@@ -1,9 +1,8 @@
 ﻿namespace FagdagCqrs.Backend.Contracts
 {
-    public class RoomTypeInfo
+    public class BookingStatusType
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public decimal PricePerNight { get; set; }
     }
 }

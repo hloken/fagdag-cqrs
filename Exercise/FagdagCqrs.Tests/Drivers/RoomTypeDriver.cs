@@ -14,11 +14,12 @@ namespace FagdagCqrs.Tests.Drivers
             return browser.Get(_url).Body.DeserializeJson<RoomTypeInfo[]>();
         }
 
-        public static void ShouldContainRoomType(this IEnumerable<RoomTypeInfo> roomTypeInfos, RoomType roomType)
+        public static void ShouldContainRoomType(this IEnumerable<RoomTypeInfo> roomTypeInfos, RoomType roomType, decimal pricePerNight)
         {
             roomTypeInfos.Should().Contain(rt =>
                 rt.Title == roomType.ToString() &&
-                rt.Id == (int)roomType);
+                rt.Id == (int) roomType &&
+                rt.PricePerNight == pricePerNight);
         }
     }
 }

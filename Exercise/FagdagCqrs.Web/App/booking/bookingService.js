@@ -6,12 +6,21 @@
             return result.data;
         });
     };
-    
-    //this.updateUnion = function (companyId, union) {
-    //    return $http.put(settings.apiBaseUrl + 'api/payroll/company/' + companyId + '/union/' + union.id, union);
-    //};
+
+    this.getBooking = function (bookingId) {
+        var url = this.baseUrl + '/' + bookingId;
+
+        return $http.get(url).then(function (result) {
+            return result.data;
+        });
+    };
 
     this.createBooking = function (newBooking) {
         return $http.post(this.baseUrl, newBooking);
     };
+
+    this.confirmBooking = function (bookingId) {
+        var url = this.baseUrl + '/' + bookingId + '/confirm';
+        return $http.post(url);
+    }
 }]);

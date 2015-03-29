@@ -1,38 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Data;
 using Nancy;
 
 namespace FagdagCqrs.Backend.ApiModules
 {
     public class RoomTypeModule : NancyModule
     {
-        public RoomTypeModule()
-            : base("api/roomtypes")
+        public RoomTypeModule() : base("api/roomtypes")
         {
             Get[""] = parameters =>
             {
-                var enumDictionary = GetEnumDictionary();
-
                 var roomTypeViewModels =
-                    (from kvp in enumDictionary
+                    (from kvp in Database.RoomTypeDefinions
                      select new RoomTypeInfo
                      {
-                         Id = kvp.Key, 
-                         Title = kvp.Value
+                         Id = Convert.ToInt32(kvp.Key), 
+                         Title = kvp.Value.RoomType.ToString(),
+                         PricePerNight = kvp.Value.PricePerNight
                      })
                      .ToArray();
 
                 return Response.AsJson(roomTypeViewModels);
             };
-        }
-
-        private static Dictionary<int, string> GetEnumDictionary()
-        {
-            return (Enum.GetValues(typeof (RoomType)).Cast<RoomType>()).ToDictionary(
-                item => Convert.ToInt32(item), 
-                item => item.ToString());
         }
     }
 }

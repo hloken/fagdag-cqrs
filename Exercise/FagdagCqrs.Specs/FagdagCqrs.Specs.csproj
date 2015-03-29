@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FagdagCqrs.Specs</RootNamespace>
     <AssemblyName>FagdagCqrs.Specs</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -79,6 +80,8 @@
       <DependentUpon>SpecflowTransformations.tt</DependentUpon>
     </Compile>
     <Compile Include="Arguments\TableTransformationValidator.cs" />
+    <Compile Include="Data\DbLookups.cs" />
+    <Compile Include="Drivers\BookingApiDriver.cs" />
     <Compile Include="Drivers\BookingGuiDriver.cs" />
     <Compile Include="Drivers\HttpClientWrapper.cs" />
     <Compile Include="Drivers\SetupDrivers.cs" />
@@ -91,6 +94,7 @@
     </Compile>
     <Compile Include="Helpers\WebDriverExtensions.cs" />
     <Compile Include="Pages\BookingsPage.cs" />
+    <Compile Include="Pages\NewBookingConfirmationPage.cs" />
     <Compile Include="Pages\NewBookingPage.cs" />
     <Compile Include="Pages\Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,7 +130,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FagdagCqrs.Backend\FagdagCqrs.Backend.csproj">
+      <Project>{35460aa4-b94a-4b64-9418-7243ec3d2f01}</Project>
+      <Name>FagdagCqrs.Backend</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

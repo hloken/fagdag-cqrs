@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
 using FagdagCqrs.Backend.Data;
@@ -35,6 +36,34 @@ namespace FagdagCqrs.Backend.ApiModules
                 return HttpStatusCode.NotFound;
             };
 
+            Get["/bookingStatusTypes"] = parameters =>
+            {
+                var bookingStatusDictionary = GetEnumDictionary<RoomBookingStatus>();
+
+                var bookingStatusTypes =
+                    (from kvp in bookingStatusDictionary
+                     select new BookingStatusType
+                     {
+                         Id = kvp.Key,
+                         Title = kvp.Value
+                     })
+                     .ToArray();
+
+                return Response.AsJson(bookingStatusTypes);
+            };
+
+            Post["/{bookingId}/confirm"] = parameters =>
+            {
+                Guid bookingId = parameters.bookingId;
+
+                if (Database.RoomBookings.ContainsKey(bookingId))
+                {
+                    Database.RoomBookings[bookingId].Status = RoomBookingStatus.ConfirmedByCustomer;
+                }
+
+                return HttpStatusCode.OK;
+            };
+
             Post[""] = parameters =>
             {
                 var bookingToCreate = this.Bind<RoomBookingInfo>();
@@ -44,6 +73,13 @@ namespace FagdagCqrs.Backend.ApiModules
 
                 return Response.AsJson(new IdWrapper(newBookingId));
             };
+        }
+
+        private static Dictionary<int, string> GetEnumDictionary<T>()
+        {
+            return (Enum.GetValues(typeof(T)).Cast<T>()).ToDictionary(
+                item => Convert.ToInt32(item),
+                item => item.ToString());
         }
 
         private static RoomBooking MapToRoomBooking(Guid roomBookingId, RoomBookingInfo roomBookingToCreate)
@@ -59,11 +95,15 @@ namespace FagdagCqrs.Backend.ApiModules
 
         private static RoomBookingInfo MapToRoomBookingInfo(RoomBooking roomBooking)
         {
-            var roomBookingInfo = new RoomBookingInfo(
-                roomBooking.Id, 
-                roomBooking.RoomType, 
-                roomBooking.FromDate, 
-                roomBooking.Duration);
+            var roomBookingInfo = new RoomBookingInfo
+            {
+                Id = roomBooking.Id,
+                Status = roomBooking.Status,
+                RoomType = roomBooking.RoomType,
+                FromDate = roomBooking.FromDate,
+                Duration = roomBooking.Duration,
+                Price = roomBooking.Price
+            };
 
             return roomBookingInfo;
         }

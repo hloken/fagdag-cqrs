@@ -69,7 +69,9 @@
     <Content Include="App\Booking\bookings.html" />
     <Content Include="App\Booking\bookingService.js" />
     <Content Include="App\Booking\bookingsController.js" />
+    <Content Include="App\Booking\Confirmation\newBookingConfirmation.html" />
     <Content Include="App\Booking\newBooking.html" />
+    <Content Include="App\Booking\Confirmation\newBookingConfirmationController.js" />
     <Content Include="App\Booking\newBookingController.js" />
     <Content Include="App\index.js" />
     <Content Include="App\Main\main.html" />

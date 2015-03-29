@@ -21,9 +21,11 @@ namespace FagdagCqrs.Tests.RestApi
         }
 
         [SetUp]
-        protected void TestSetup()
+        public override void SetUp()
         {
             Database.Drop();
+            Given();
+            When();
         }
     }
 }

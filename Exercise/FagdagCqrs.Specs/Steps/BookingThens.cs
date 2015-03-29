@@ -11,20 +11,25 @@ namespace FagdagCqrs.Specs.Steps
     [Binding]
     public class BookingThens
     {
+        private readonly BookingApiDriver _bookingApiDriver;
         private readonly IWebDriver _webDriver;
 
-        public BookingThens(WebDriverInstanceWrapper webDriverInstanceWrapper)
+        public BookingThens(WebDriverInstanceWrapper webDriverInstanceWrapper, BookingApiDriver bookingApiDriver)
         {
+            _bookingApiDriver = bookingApiDriver;
             _webDriver = webDriverInstanceWrapper.Instance;
         }
 
-        [Then(@"skal jeg se totalprisen før bestillingen bekreftes")]
-        public void SaSkalJegSeTotalprisenForBestillingenBekreftes()
+        [Then(@"skal jeg se totalprisen '(.*)' før bestillingen bekreftes for reservasjon")]
+        public void SaSkalJegSeTotalprisenForBestillingenBekreftesForReservasjon(decimal totalPris, RomReservasjon romReservasjon)
         {
-            ScenarioContext.Current.Pending();
+            var page = _webDriver.Navigate<NewBookingConfirmationPage>();
+
+            _bookingApiDriver.FindBookingBy(romReservasjon.RomType, romReservasjon.FraDato, romReservasjon.LengdePåOpphold);
         }
 
-        [Then(@"skal jeg se reservasjonen i reservasjons listen")]
+
+        [Then(@"skal jeg se reservasjonen i reservasjonslisten")]
         public void SaSkalJegSeReservasjonenIReservasjonsListen(RomReservasjon romReservasjon)
         {
             var page = _webDriver.NavigateAndRefresh<BookingsPage>();

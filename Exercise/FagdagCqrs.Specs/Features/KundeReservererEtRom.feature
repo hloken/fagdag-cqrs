@@ -10,12 +10,14 @@ Scenario: Reservere rom av en gitt type skal se totalpris før jeg bekrefter
 	Når jeg reserverer et rom
 	| Romtype      | Fra dato  | Lengde på opphold |
 	| Junior Suite | 20-1-2015 | 5                 |
-	Så skal jeg se totalprisen før bestillingen bekreftes
+	Så skal jeg se totalprisen '5500' før bestillingen bekreftes for reservasjon
+	| Romtype      | Fra dato  | Lengde på opphold |
+	| Junior Suite | 20-1-2015 | 5                 |
 
 Scenario: Reservere rom av en gitt type skal se reservasjon i listen
 	Når jeg reserverer et rom
 	| Romtype      | Fra dato  | Lengde på opphold |
-	| Junior Suite | 20-1-2015 | 5                 |
-	Så skal jeg se reservasjonen i reservasjons listen
+	| Junior Suite | 22-1-2015 | 5                 |
+	Så skal jeg se reservasjonen i reservasjonslisten
 	| Romtype      | Fra dato  | Lengde på opphold |
-	| Junior Suite | 20-1-2015 | 5                 |
+	| Junior Suite | 22-1-2015 | 5                 |

@@ -1,6 +1,6 @@
-angular.module('fagdagCqrsHotel').controller('NewBookingController', ['$scope', '$location', '$routeParams', 'RoomTypeService', 'BookingService', function ($scope, $location, $routeParams, roomTypeService, bookingService) {
+angular.module('fagdagCqrsHotel').controller('NewBookingController', ['$scope', '$location', 'RoomTypeService', 'BookingService', function ($scope, $location, roomTypeService, bookingService) {
     $scope.isLoading = true;
-    $scope.backUrl = '/booking';
+    $scope.confirmationUrl = '/booking';
 
     roomTypeService.getRoomTypes().then(function(roomTypesList) {
         $scope.roomTypes = roomTypesList;
@@ -19,8 +19,13 @@ angular.module('fagdagCqrsHotel').controller('NewBookingController', ['$scope', 
             $scope.newBooking.duration < 1) {
             $scope.errorMessage = 'Bad booking, fix it';
         } else {
-            bookingService.createBooking($scope.newBooking);
-            $location.url($scope.backUrl);
+            bookingService.createBooking($scope.newBooking)
+                .then(function (result) {
+                    var bookingId = result.data.id;
+                    var url = '/booking/new/' + bookingId + '/confirmation';
+                    $location.url(url);
+                });
+            
         }
     }
 }]);

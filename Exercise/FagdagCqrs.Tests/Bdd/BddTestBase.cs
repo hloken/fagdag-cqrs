@@ -4,8 +4,8 @@ namespace FagdagCqrs.Tests.Bdd
 {
     public abstract class BddTestBase
     {
-        [TestFixtureSetUp]
-        public void SetUp()
+        [SetUp]
+        public virtual void SetUp()
         {
             Given();
             When();

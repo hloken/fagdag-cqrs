@@ -10,7 +10,7 @@
         $scope.bookings = results[1];
 
         _.each($scope.bookings, function(booking) {
-            booking.roomTypeName = $scope.roomTypesMap[booking.roomType];
+            booking.roomTypeName = $scope.roomTypesMap[booking.roomType].title;
         });
 
         $scope.isLoading = false;

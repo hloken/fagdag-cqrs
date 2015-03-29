@@ -12,7 +12,10 @@ angular.module('fagdagCqrsHotel').service('RoomTypeService', ['$http', 'Settings
     this.mapRoomTypesToMap = function(roomTypesList) {
         var roomTypesMap = {};
         _.each(roomTypesList, function (roomType) {
-            roomTypesMap[roomType.id] = roomType.title;
+            roomTypesMap[roomType.id] = {
+                title: roomType.title,
+                pricePerNight: roomType.pricePerNight
+            }
         });
 
         return roomTypesMap;

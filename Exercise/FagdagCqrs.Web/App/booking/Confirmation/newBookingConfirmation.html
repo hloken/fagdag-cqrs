@@ -1,0 +1,22 @@
+﻿<h1>He looka like a 'man!</h1>
+<fieldset>
+    <div>
+        <label>Room type:</label>
+        <span id="roomTypeName">{{booking.roomTypeName}}</span>
+    </div>
+    <div>
+        <label>From date:</label>
+        <span id="fromDate">{{booking.fromDate | date}}</span>
+    </div>
+    <div>
+        <label>Duration:</label>
+        <span id="duration">{{booking.duration}}</span> days
+    </div>
+    <div>
+        <h1>Total paymend due:</h1>
+        <span id="price">{{booking.price}}</span>
+    </div>
+</fieldset>
+<button type="button" ng-click="save()">CONFIRM THE BOOKING</button>
+<a href="#/booking">Back...</a>
+<div ng-show="isLoading" class="loaded">Loading booking</div>
