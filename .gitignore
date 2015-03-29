@@ -31,3 +31,4 @@ Exercise/packages/
 node_modules/
 **/*.ncrunchsolution
 **/*.ncrunchproject
+**/.idea/workspace.xml
