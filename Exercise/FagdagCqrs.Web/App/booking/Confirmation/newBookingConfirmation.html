@@ -1,5 +1,8 @@
-﻿<h1>He looka like a 'man!</h1>
+﻿<h1>Please confirm so we can start processing your booking</h1>
 <fieldset>
+    <div ng-hide="true">
+        <input type="hidden" ng-value="booking.id" />
+    </div>
     <div>
         <label>Room type:</label>
         <span id="roomTypeName">{{booking.roomTypeName}}</span>
@@ -13,8 +16,8 @@
         <span id="duration">{{booking.duration}}</span> days
     </div>
     <div>
-        <h1>Total paymend due:</h1>
-        <span id="price" ng-model="booking.price"></span>
+        <h1>Total payment due:</h1>
+        <input disabled ng-value="booking.price"/>
     </div>
 </fieldset>
 <button type="button" ng-click="save()">CONFIRM THE BOOKING</button>

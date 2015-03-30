@@ -71,6 +71,7 @@
     <Compile Include="AngularBindingAdapters\AngularInputBinding.cs" />
     <Compile Include="AngularBindingAdapters\AngularSelectBinding.cs" />
     <Compile Include="AngularBindingAdapters\AngularTextBinding.cs" />
+    <Compile Include="AngularBindingAdapters\AngularValueBinding.cs" />
     <Compile Include="AngularBindingAdapters\NgViewException.cs" />
     <Compile Include="AngularBindingAdapters\WebElementExtensions.cs" />
     <Compile Include="Arguments\RomType.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Drivers\BookingGuiDriver.cs" />
     <Compile Include="Drivers\HttpClientWrapper.cs" />
     <Compile Include="Drivers\SetupDrivers.cs" />
+    <Compile Include="Drivers\TestingApiDriver.cs" />
     <Compile Include="Drivers\WebDriverInstanceWrapper.cs" />
     <Compile Include="Drivers\WebDrivers.cs" />
     <Compile Include="Features\KundeReservererEtRom.feature.cs">

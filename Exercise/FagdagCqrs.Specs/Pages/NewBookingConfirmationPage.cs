@@ -18,11 +18,11 @@ namespace FagdagCqrs.Specs.Pages
             get { return string.Format("#/booking/{0}/confirmation", _bookingId); }
         }
 
-        public AngularTextBinding TotalPrice
+        public AngularValueBinding TotalPrice
         {
             get
             {
-                return AngularView.TextBinding("booking.price");
+                return AngularView.ValueBinding("booking.price");
             }
         }
     }

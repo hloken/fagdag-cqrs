@@ -28,7 +28,7 @@ namespace FagdagCqrs.Specs.Steps
 
             var page = _webDriver.Navigate<NewBookingConfirmationPage>(booking.Id);
 
-            page.TotalPrice.Text.Should().Be(totalPris.ToString(CultureInfo.InvariantCulture));
+            page.TotalPrice.Value.Should().Be(totalPris.ToString(CultureInfo.InvariantCulture));
         }
 
 

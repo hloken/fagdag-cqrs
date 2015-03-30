@@ -62,6 +62,7 @@
     <Compile Include="Bdd\ThenAttribute.cs" />
     <Compile Include="Drivers\BookingDriver.cs" />
     <Compile Include="Drivers\RoomTypeDriver.cs" />
+    <Compile Include="Drivers\TestingDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RestApi\Booking\ConfirmBooking.cs" />
     <Compile Include="RestApi\Booking\CreatingBooking.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="RestApi\Booking\RetrievingAllBookings.cs" />
     <Compile Include="RestApi\RestApiBddTestBase.cs" />
     <Compile Include="RestApi\Room\RetrieveRoomTypes.cs" />
+    <Compile Include="RestApi\Testing\DroppingDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

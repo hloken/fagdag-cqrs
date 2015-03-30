@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="ApiModules\BookingModule.cs" />
     <Compile Include="ApiModules\RoomTypeModule.cs" />
+    <Compile Include="ApiModules\TestingModule.cs" />
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Bootstrapping\FagdagCqrsCorsProvider.cs" />
     <Compile Include="Bootstrapping\Startup.cs" />

@@ -18,9 +18,6 @@ namespace FagdagCqrs.Specs.Drivers
         public SetupDrivers(IObjectContainer objectContainer)
         {
             _objectContainer = objectContainer;
-            //_objectContainer.RegisterTypeAs<UnionGuiDriver, UnionGuiDriver>();
-            //_objectContainer.RegisterTypeAs<CompanyApiDriver, CompanyApiDriver>();
-            //_objectContainer.RegisterTypeAs<EmployeeApiDriver, EmployeeApiDriver>();
         }
 
         [BeforeTestRun]
@@ -45,6 +42,9 @@ namespace FagdagCqrs.Specs.Drivers
         {
             _objectContainer.RegisterInstanceAs(_webDriverWrapper);
             _objectContainer.RegisterInstanceAs(_httpClientWrapper);
+
+            var testingDriver = _objectContainer.Resolve<TestingApiDriver>();
+            testingDriver.DropDatabase();
         }
 
         [AfterScenario]
