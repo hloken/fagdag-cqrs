@@ -69,7 +69,10 @@ namespace FagdagCqrs.Backend.ApiModules
                 var bookingToCreate = this.Bind<RoomBookingInfo>();
 
                 var newBookingId = Guid.NewGuid();
-                Database.RoomBookings.Add(newBookingId, MapToRoomBooking(newBookingId, bookingToCreate)); 
+                var roomBooking = CreateRoomBooking(newBookingId, bookingToCreate);
+                roomBooking.Price = Database.RoomTypeDefinions[roomBooking.RoomType].PricePerNight * roomBooking.Duration;
+                
+                Database.RoomBookings.Add(newBookingId, roomBooking); 
 
                 return Response.AsJson(new IdWrapper(newBookingId));
             };
@@ -82,7 +85,7 @@ namespace FagdagCqrs.Backend.ApiModules
                 item => item.ToString());
         }
 
-        private static RoomBooking MapToRoomBooking(Guid roomBookingId, RoomBookingInfo roomBookingToCreate)
+        private static RoomBooking CreateRoomBooking(Guid roomBookingId, RoomBookingInfo roomBookingToCreate)
         {
             var roomBooking = RoomBooking.Create(
                 roomBookingId, 

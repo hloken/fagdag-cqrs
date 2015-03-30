@@ -1,4 +1,5 @@
-﻿using FagdagCqrs.Specs.Arguments;
+﻿using System.Globalization;
+using FagdagCqrs.Specs.Arguments;
 using FagdagCqrs.Specs.Drivers;
 using FagdagCqrs.Specs.Helpers;
 using FagdagCqrs.Specs.Pages;
@@ -23,9 +24,11 @@ namespace FagdagCqrs.Specs.Steps
         [Then(@"skal jeg se totalprisen '(.*)' før bestillingen bekreftes for reservasjon")]
         public void SaSkalJegSeTotalprisenForBestillingenBekreftesForReservasjon(decimal totalPris, RomReservasjon romReservasjon)
         {
-            var page = _webDriver.Navigate<NewBookingConfirmationPage>();
+            var booking = _bookingApiDriver.FindBookingBy(romReservasjon.RomType, romReservasjon.FraDato, romReservasjon.LengdePåOpphold);
 
-            _bookingApiDriver.FindBookingBy(romReservasjon.RomType, romReservasjon.FraDato, romReservasjon.LengdePåOpphold);
+            var page = _webDriver.Navigate<NewBookingConfirmationPage>(booking.Id);
+
+            page.TotalPrice.Text.Should().Be(totalPris.ToString(CultureInfo.InvariantCulture));
         }
 
 

@@ -49,7 +49,7 @@ namespace FagdagCqrs.Specs.Drivers
 
         public static ChromeDriver GetChromeDriver()
         {
-            var chromeDriver = new ChromeDriver();
+            var chromeDriver = new ChromeDriver(new ChromeOptions {});
             chromeDriver.Manage().Timeouts().SetScriptTimeout(TimeSpan.FromSeconds(3));
             return chromeDriver;
         }

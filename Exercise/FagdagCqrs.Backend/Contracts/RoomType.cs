@@ -8,6 +8,6 @@ namespace FagdagCqrs.Backend.Contracts
         Double,
         Twin,
         Single,
-        Shared
+        Shared,
     }
 }

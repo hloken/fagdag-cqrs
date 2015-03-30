@@ -6,7 +6,7 @@ angular.module('fagdagCqrsHotel').controller('NewBookingConfirmationController',
 
         bookingService.getBooking($scope.bookingId).then(function (result) {
             $scope.isLoading = false;
-            $scope.booking = result.data;
+            $scope.booking = result;
         });
         
         $scope.save = function () {

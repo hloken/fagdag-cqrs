@@ -70,6 +70,7 @@
     <Compile Include="AngularBindingAdapters\AngularClickBinding.cs" />
     <Compile Include="AngularBindingAdapters\AngularInputBinding.cs" />
     <Compile Include="AngularBindingAdapters\AngularSelectBinding.cs" />
+    <Compile Include="AngularBindingAdapters\AngularTextBinding.cs" />
     <Compile Include="AngularBindingAdapters\NgViewException.cs" />
     <Compile Include="AngularBindingAdapters\WebElementExtensions.cs" />
     <Compile Include="Arguments\RomType.cs" />

@@ -39,5 +39,10 @@ namespace FagdagCqrs.Specs.AngularBindingAdapters
         {
             return new AngularClickBinding(scope, propertyName);
         }
+
+        public static AngularTextBinding TextBinding(this IWebElement scope, string propertyName)
+        {
+            return new AngularTextBinding(scope, propertyName);
+        }
     }
 }
