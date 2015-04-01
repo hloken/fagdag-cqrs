@@ -41,7 +41,7 @@ namespace FagdagCqrs.Tests.Drivers
         public static BrowserResponse ConfirmBookingWithResponse(Browser browser, Guid bookingId)
         {
             var url = string.Format("{0}/{1}/confirm", _baseUrl, bookingId);
-            return browser.Post(url);
+            return browser.Put(url);
         }
 
         public static void ShouldContainBooking(this IEnumerable<RoomBookingInfo> actualBookings, Guid bookingId, RoomBookingInfo expectedBooking)

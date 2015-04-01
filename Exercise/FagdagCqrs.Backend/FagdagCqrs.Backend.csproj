@@ -82,10 +82,12 @@
     <Compile Include="Contracts\RoomBookingStatus.cs" />
     <Compile Include="Contracts\RoomType.cs" />
     <Compile Include="Contracts\RoomTypeInfo.cs" />
-    <Compile Include="Data\Database.cs" />
-    <Compile Include="Data\RoomBooking.cs" />
+    <Compile Include="DataAdapters\RoomBookingDataAdapter.cs" />
+    <Compile Include="DataAdapters\RoomTypeDefinitionDataAdapter.cs" />
+    <Compile Include="DataModels\RoomBooking.cs" />
+    <Compile Include="DataModels\RoomTypeDefinition.cs" />
+    <Compile Include="DataAdapters\Database.cs" />
     <Compile Include="ConsoleHost.cs" />
-    <Compile Include="Data\RoomTypeDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

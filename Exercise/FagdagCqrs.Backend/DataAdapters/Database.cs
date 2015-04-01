@@ -1,15 +1,28 @@
 using System;
 using System.Collections.Generic;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.DataModels;
 
-namespace FagdagCqrs.Backend.Data
+namespace FagdagCqrs.Backend.DataAdapters
 {
-    public static class Database
+    public class Database
     {
-        public static Dictionary<Guid, RoomBooking> RoomBookings { get; private set; }
-        public static Dictionary<RoomType, RoomTypeDefinition> RoomTypeDefinions { get; private set; }
+        private static Database _instance;
 
-        static Database()
+        public Dictionary<Guid, RoomBooking> RoomBookings { get; private set; }
+        public Dictionary<RoomType, RoomTypeDefinition> RoomTypeDefinions { get; private set; }
+
+        public static Database Instance()
+        {
+            if (_instance == null)
+            {
+                _instance = new Database();
+            }
+
+            return _instance;
+        }
+
+        private Database()
         {
             RoomBookings = new Dictionary<Guid, RoomBooking>();
 
@@ -23,12 +36,12 @@ namespace FagdagCqrs.Backend.Data
             AddRoomTypeDefinition(RoomType.SuperDeluxeSuite, 2750.0m);
         }
 
-        private static void AddRoomTypeDefinition(RoomType roomType, decimal pricePerNight)
+        private void AddRoomTypeDefinition(RoomType roomType, decimal pricePerNight)
         {
             RoomTypeDefinions.Add(roomType, new RoomTypeDefinition(roomType, pricePerNight));
         }
-        
-        internal static void Drop()
+
+        internal void Drop()
         {
             RoomBookings.Clear();
         }

@@ -1,4 +1,4 @@
-﻿using FagdagCqrs.Backend.Data;
+﻿using FagdagCqrs.Backend.DataAdapters;
 using Nancy;
 
 namespace FagdagCqrs.Backend.ApiModules
@@ -9,7 +9,7 @@ namespace FagdagCqrs.Backend.ApiModules
         {
             Post["/dropDatabase"] = parameters =>
             {
-                Database.Drop();
+                Database.Instance().Drop();
                 return HttpStatusCode.OK;
             };
         }

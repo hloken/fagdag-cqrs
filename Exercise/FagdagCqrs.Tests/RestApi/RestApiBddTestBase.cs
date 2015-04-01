@@ -1,5 +1,5 @@
 ﻿using FagdagCqrs.Backend.Bootstrapping;
-using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.DataAdapters;
 using FagdagCqrs.Tests.Bdd;
 using Nancy.Testing;
 using NUnit.Framework;
@@ -23,7 +23,7 @@ namespace FagdagCqrs.Tests.RestApi
         [SetUp]
         public override void SetUp()
         {
-            Database.Drop();
+            Database.Instance().Drop();
             Given();
             When();
         }

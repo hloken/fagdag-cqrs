@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.DataAdapters;
+using FagdagCqrs.Backend.DataModels;
 using Nancy;
 using Nancy.ModelBinding;
 
@@ -10,13 +11,18 @@ namespace FagdagCqrs.Backend.ApiModules
 {
     public class BookingModule : NancyModule
     {
+        private readonly RoomBookingDataAdapter _roomBookingDataAdapter;
+        private readonly RoomTypeDefinitionDataAdapter _roomTypeDefinitionDataAdapter;
+
         public BookingModule()
             : base("api/booking")
         {
+            _roomBookingDataAdapter = new RoomBookingDataAdapter(Database.Instance());
+            _roomTypeDefinitionDataAdapter = new RoomTypeDefinitionDataAdapter(Database.Instance());
+
             Get[""] = parameters =>
             {
-                var bookings = Database.RoomBookings.Values.Select(MapToRoomBookingInfo)
-                     .ToArray();
+                var bookings = _roomBookingDataAdapter.ReadAll();
 
                 return Response.AsJson(bookings);
             };
@@ -25,15 +31,27 @@ namespace FagdagCqrs.Backend.ApiModules
             {
                 Guid bookingId = parameters.bookingId;
 
-                if (Database.RoomBookings.ContainsKey(bookingId))
+                var roomBooking = _roomBookingDataAdapter.Read(bookingId);
+                if (roomBooking != null)
                 {
-                    var roomBooking = Database.RoomBookings[bookingId];
-
                     return Response.AsJson(
                         MapToRoomBookingInfo(roomBooking));
                 }
 
                 return HttpStatusCode.NotFound;
+            };
+
+            Post[""] = parameters =>
+            {
+                var bookingToCreate = this.Bind<RoomBookingInfo>();
+
+                var newBookingId = Guid.NewGuid();
+                var roomBooking = CreateRoomBooking(newBookingId, bookingToCreate);
+                roomBooking.Price = _roomTypeDefinitionDataAdapter.Read(roomBooking.RoomType).PricePerNight * roomBooking.Duration;
+
+                _roomBookingDataAdapter.Create(newBookingId, roomBooking);
+
+                return Response.AsJson(new IdWrapper(newBookingId));
             };
 
             Get["/bookingStatusTypes"] = parameters =>
@@ -52,29 +70,20 @@ namespace FagdagCqrs.Backend.ApiModules
                 return Response.AsJson(bookingStatusTypes);
             };
 
-            Post["/{bookingId}/confirm"] = parameters =>
+            Put["/{bookingId}/confirm"] = parameters =>
             {
                 Guid bookingId = parameters.bookingId;
 
-                if (Database.RoomBookings.ContainsKey(bookingId))
+                var roomBooking = _roomBookingDataAdapter.Read(bookingId);
+                if (roomBooking != null)
                 {
-                    Database.RoomBookings[bookingId].Status = RoomBookingStatus.ConfirmedByCustomer;
+                    roomBooking.Status = RoomBookingStatus.ConfirmedByCustomer;
+                    _roomBookingDataAdapter.Update(roomBooking);
+
+                    return HttpStatusCode.OK;
                 }
 
-                return HttpStatusCode.OK;
-            };
-
-            Post[""] = parameters =>
-            {
-                var bookingToCreate = this.Bind<RoomBookingInfo>();
-
-                var newBookingId = Guid.NewGuid();
-                var roomBooking = CreateRoomBooking(newBookingId, bookingToCreate);
-                roomBooking.Price = Database.RoomTypeDefinions[roomBooking.RoomType].PricePerNight * roomBooking.Duration;
-                
-                Database.RoomBookings.Add(newBookingId, roomBooking); 
-
-                return Response.AsJson(new IdWrapper(newBookingId));
+                return HttpStatusCode.NotFound;
             };
         }
 
