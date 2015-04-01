@@ -16,8 +16,9 @@ angular.module('fagdagCqrsHotel').controller('NewBookingConfirmationController',
         });
 
         $scope.save = function () {
-            bookingService.confirmBooking($scope.booking.id);
-            $location.url($scope.backUrl);
+            bookingService.confirmBooking($scope.booking.id).then(
+                $location.url($scope.backUrl)
+            );
         };
     }
 ]);
