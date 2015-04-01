@@ -17,4 +17,5 @@ Project:
 		4. run "grunt" (leave the PowerKjell window open, grunt is watching for file changes and doing magic)
 
 	For running from Visual Studio:
-		1. Select "FagdagCqrs.Backend" as Startup project
+		1. Select "FagdagCqrs.Backend" as Startup project or make a shortcut to "bin/debug/FagdagCqrs.Backend.exe"
+
