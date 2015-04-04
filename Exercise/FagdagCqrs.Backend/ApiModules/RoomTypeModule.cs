@@ -3,6 +3,7 @@ using System.Linq;
 using FagdagCqrs.Backend.Contracts;
 using FagdagCqrs.Backend.Data;
 using FagdagCqrs.Backend.Data.Adapters;
+using FagdagCqrs.Backend.Data.Internal;
 using Nancy;
 
 namespace FagdagCqrs.Backend.ApiModules

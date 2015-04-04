@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Contracts.Commands;
+using FagdagCqrs.Backend.Contracts.Queries;
 using FluentAssertions;
 using Nancy.Testing;
 
@@ -10,12 +12,12 @@ namespace FagdagCqrs.Tests.Drivers
     {
         private const string _baseUrl = "api/booking";
 
-        public static BrowserResponse CreateBookingWithResponse(Browser browser, RoomBookingInfo bookingToCreate)
+        public static BrowserResponse CreateBookingWithResponse(Browser browser, RoomBookingCommand bookingToCreate)
         {
             return browser.Post(_baseUrl, x => x.JsonBody(bookingToCreate));
         }
 
-        public static Guid CreateBooking(Browser browser, RoomBookingInfo bookingToCreate)
+        public static Guid CreateBooking(Browser browser, RoomBookingCommand bookingToCreate)
         {
             return CreateBookingWithResponse(browser, bookingToCreate).Body.DeserializeJson<IdWrapper>().Id;
         }
@@ -44,7 +46,7 @@ namespace FagdagCqrs.Tests.Drivers
             return browser.Put(url);
         }
 
-        public static void ShouldContainBooking(this IEnumerable<RoomBookingInfo> actualBookings, Guid bookingId, RoomBookingInfo expectedBooking)
+        public static void ShouldContainBooking(this IEnumerable<RoomBookingInfo> actualBookings, Guid bookingId, RoomBookingCommand expectedBooking)
         {
             actualBookings.Should().Contain(rbi =>
                 rbi.Id == bookingId &&

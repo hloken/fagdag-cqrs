@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Data.Internal;
 using FagdagCqrs.Backend.Data.Models;
 
 namespace FagdagCqrs.Backend.Data.Adapters

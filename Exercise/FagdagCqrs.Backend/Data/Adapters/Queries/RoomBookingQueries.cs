@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Backend.Data.Internal;
+using FagdagCqrs.Backend.Data.Models.Queries;
 
 namespace FagdagCqrs.Backend.Data.Adapters.Queries
 {
@@ -11,14 +12,15 @@ namespace FagdagCqrs.Backend.Data.Adapters.Queries
 
         public RoomBookingQueries(Database database)
         {
-            this._database = database;
+            _database = database;
         }
 
         public RoomBooking Read(Guid bookingId)
         {
             if (_database.RoomBookings.ContainsKey(bookingId))
             {
-                return _database.RoomBookings[bookingId];
+                var rb = _database.RoomBookings[bookingId];
+                return CreateQueriesRoomBooking(rb);
             }
 
             return null;
@@ -26,10 +28,22 @@ namespace FagdagCqrs.Backend.Data.Adapters.Queries
 
         public ReadOnlyCollection<RoomBooking> ReadAll()
         {
-            var roomBookings = (from roomBooking in _database.RoomBookings.Values
-                                select roomBooking);
+            var roomBookings = (from rb in _database.RoomBookings.Values
+                                select CreateQueriesRoomBooking(rb));
 
             return new ReadOnlyCollection<RoomBooking>(roomBookings.ToArray());
-        } 
+        }
+
+        private static RoomBooking CreateQueriesRoomBooking(RoomBookingInternal rb)
+        {
+            return new RoomBooking(
+                rb.Id,
+                rb.RoomType,
+                rb.FromDate,
+                rb.Duration,
+                rb.Status,
+                rb.Price
+                );
+        }
     }
 }

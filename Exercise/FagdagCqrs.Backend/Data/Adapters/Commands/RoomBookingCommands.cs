@@ -1,5 +1,7 @@
 ﻿using System;
-using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Data.Internal;
+using FagdagCqrs.Backend.Data.Models.Commands;
 
 namespace FagdagCqrs.Backend.Data.Adapters.Commands
 {
@@ -14,19 +16,32 @@ namespace FagdagCqrs.Backend.Data.Adapters.Commands
 
         public void Create(Guid bookingId, RoomBooking roomBookingToCreate)
         {
-            _database.RoomBookings.Add(bookingId, roomBookingToCreate);
+            var roomBookingInternal = CreateRoomBooking(bookingId, roomBookingToCreate);
+            _database.RoomBookings.Add(bookingId, roomBookingInternal);
         }
 
-        public void Update(RoomBooking updatedRoomBooking)
+        public bool ConfirmBooking(Guid confirmBookingId)
         {
-            var updateBookingId = updatedRoomBooking.Id;
-
-            if (_database.RoomBookings.ContainsKey(updateBookingId))
+            if (_database.RoomBookings.ContainsKey(confirmBookingId))
             {
-                _database.RoomBookings.Remove(updateBookingId);
+                _database.RoomBookings[confirmBookingId].Status = RoomBookingStatus.ConfirmedByCustomer;
+
+                return true;
             }
 
-            _database.RoomBookings[updateBookingId] = updatedRoomBooking;
+            return false;
+        }
+
+        private static RoomBookingInternal CreateRoomBooking(Guid roomBookingId, RoomBooking roomBookingToCreate)
+        {
+            var roomBooking = RoomBookingInternal.Create(
+                roomBookingId,
+                roomBookingToCreate.RoomType,
+                roomBookingToCreate.FromDate,
+                roomBookingToCreate.Duration,
+                roomBookingToCreate.Price);
+
+            return roomBooking;
         }
     }
 }

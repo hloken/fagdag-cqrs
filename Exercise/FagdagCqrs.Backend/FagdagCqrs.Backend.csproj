@@ -77,8 +77,9 @@
     <Compile Include="Bootstrapping\FagdagCqrsCorsProvider.cs" />
     <Compile Include="Bootstrapping\Startup.cs" />
     <Compile Include="Contracts\BookingStatusType.cs" />
+    <Compile Include="Contracts\Commands\RoomBookingCommand.cs" />
     <Compile Include="Contracts\IdWrapper.cs" />
-    <Compile Include="Contracts\RoomBookingInfo.cs" />
+    <Compile Include="Contracts\Queries\RoomBookingInfo.cs" />
     <Compile Include="Contracts\RoomBookingStatus.cs" />
     <Compile Include="Contracts\RoomType.cs" />
     <Compile Include="Contracts\RoomTypeInfo.cs" />
@@ -86,8 +87,10 @@
     <Compile Include="Data\Adapters\Queries\RoomBookingQueries.cs" />
     <Compile Include="ConsoleHost.cs" />
     <Compile Include="Data\Adapters\RoomTypeDefinitionDataAdapter.cs" />
-    <Compile Include="Data\Database.cs" />
-    <Compile Include="Data\Models\RoomBooking.cs" />
+    <Compile Include="Data\Internal\Database.cs" />
+    <Compile Include="Data\Internal\RoomBookingInternal.cs" />
+    <Compile Include="Data\Models\Commands\RoomBooking.cs" />
+    <Compile Include="Data\Models\Queries\RoomBooking.cs" />
     <Compile Include="Data\Models\RoomTypeDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

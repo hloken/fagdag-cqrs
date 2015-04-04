@@ -1,5 +1,6 @@
 ﻿using System;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Contracts.Commands;
 using FagdagCqrs.Tests.Bdd;
 using FagdagCqrs.Tests.Drivers;
 using FluentAssertions;
@@ -15,7 +16,7 @@ namespace FagdagCqrs.Tests.RestApi.Booking
 
         protected override void Given()
         {
-            _returnedBookingId = BookingDriver.CreateBooking(Browser, new RoomBookingInfo(null, RoomType.Suite, new DateTime(2014, 06, 05), 5));
+            _returnedBookingId = BookingDriver.CreateBooking(Browser, new RoomBookingCommand(null, RoomType.Suite, new DateTime(2014, 06, 05), 5));
         }
 
         protected override void When()

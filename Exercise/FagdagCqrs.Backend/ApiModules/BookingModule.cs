@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.Contracts.Commands;
+using FagdagCqrs.Backend.Contracts.Queries;
 using FagdagCqrs.Backend.Data.Adapters;
 using FagdagCqrs.Backend.Data.Adapters.Commands;
 using FagdagCqrs.Backend.Data.Adapters.Queries;
-using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Backend.Data.Internal;
+using FagdagCqrs.Backend.Data.Models.Commands;
 using Nancy;
 using Nancy.ModelBinding;
 
@@ -48,13 +50,13 @@ namespace FagdagCqrs.Backend.ApiModules
 
             Post[""] = parameters =>
             {
-                var bookingToCreate = this.Bind<RoomBookingInfo>();
+                var bookingToCreate = this.Bind<RoomBookingCommand>();
 
                 var newBookingId = Guid.NewGuid();
-                var roomBooking = CreateRoomBooking(newBookingId, bookingToCreate);
-                roomBooking.Price = _roomTypeDefinitionDataAdapter.Read(roomBooking.RoomType).PricePerNight * roomBooking.Duration;
+                var roomBookingToCreate = CreateRoomBooking(newBookingId, bookingToCreate);
+                roomBookingToCreate.Price = _roomTypeDefinitionDataAdapter.Read(roomBookingToCreate.RoomType).PricePerNight * roomBookingToCreate.Duration;
 
-                _roomBookingCommands.Create(newBookingId, roomBooking);
+                _roomBookingCommands.Create(newBookingId, roomBookingToCreate);
 
                 return Response.AsJson(new IdWrapper(newBookingId));
             };
@@ -78,14 +80,10 @@ namespace FagdagCqrs.Backend.ApiModules
             Put["/{bookingId}/confirm"] = parameters =>
             {
                 Guid bookingId = parameters.bookingId;
-
-                var roomBooking = _roomBookingQueries.Read(bookingId);
-                if (roomBooking != null)
+                
+                if (_roomBookingCommands.ConfirmBooking(bookingId))
                 {
-                    roomBooking.Status = RoomBookingStatus.ConfirmedByCustomer;
-                    _roomBookingCommands.Update(roomBooking);
-
-                    return HttpStatusCode.OK;
+                   return HttpStatusCode.OK;
                 }
 
                 return HttpStatusCode.NotFound;
@@ -99,9 +97,9 @@ namespace FagdagCqrs.Backend.ApiModules
                 item => item.ToString());
         }
 
-        private static RoomBooking CreateRoomBooking(Guid roomBookingId, RoomBookingInfo roomBookingToCreate)
+        private static RoomBooking CreateRoomBooking(Guid roomBookingId, RoomBookingCommand roomBookingToCreate)
         {
-            var roomBooking = RoomBooking.Create(
+            var roomBooking = new RoomBooking(
                 roomBookingId, 
                 roomBookingToCreate.RoomType, 
                 roomBookingToCreate.FromDate,
@@ -110,15 +108,15 @@ namespace FagdagCqrs.Backend.ApiModules
             return roomBooking;
         }
 
-        private static RoomBookingInfo MapToRoomBookingInfo(RoomBooking roomBooking)
+        private static RoomBookingInfo MapToRoomBookingInfo(Data.Models.Queries.RoomBooking roomBooking)
         {
             var roomBookingInfo = new RoomBookingInfo
             {
                 Id = roomBooking.Id,
-                Status = roomBooking.Status,
                 RoomType = roomBooking.RoomType,
                 FromDate = roomBooking.FromDate,
                 Duration = roomBooking.Duration,
+                Status = roomBooking.Status,
                 Price = roomBooking.Price
             };
 

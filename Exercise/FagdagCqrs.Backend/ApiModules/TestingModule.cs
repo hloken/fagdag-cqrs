@@ -1,4 +1,5 @@
 ﻿using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.Data.Internal;
 using Nancy;
 
 namespace FagdagCqrs.Backend.ApiModules

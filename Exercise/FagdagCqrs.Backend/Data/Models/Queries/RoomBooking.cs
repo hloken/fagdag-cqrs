@@ -1,17 +1,18 @@
 ﻿using System;
 using FagdagCqrs.Backend.Contracts;
 
-namespace FagdagCqrs.Backend.Data.Models
+namespace FagdagCqrs.Backend.Data.Models.Queries
 {
     public class RoomBooking
     {
-        private RoomBooking(Guid id, RoomType roomType, DateTime fromDate, int duration)
+        public RoomBooking(Guid id, RoomType roomType, DateTime fromDate, int duration, RoomBookingStatus status, decimal? price)
         {
             Id = id;
             RoomType = roomType;
             FromDate = fromDate;
             Duration = duration;
-            Status = RoomBookingStatus.Draft;
+            Status = status;
+            Price = price;
         }
 
         public Guid Id { get; set; }
@@ -20,10 +21,5 @@ namespace FagdagCqrs.Backend.Data.Models
         public int Duration { get; set; }
         public RoomBookingStatus Status { get; set; }
         public decimal? Price { get; set; }
-
-        public static RoomBooking Create(Guid roomBookingId, RoomType roomType, DateTime fromDate, int duration)
-        {
-            return new RoomBooking(roomBookingId, roomType, fromDate, duration);
-        }
     }
 }

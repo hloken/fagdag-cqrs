@@ -1,5 +1,6 @@
 ﻿using FagdagCqrs.Backend.Bootstrapping;
 using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.Data.Internal;
 using FagdagCqrs.Tests.Bdd;
 using Nancy.Testing;
 using NUnit.Framework;

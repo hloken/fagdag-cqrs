@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using FagdagCqrs.Backend.Contracts;
 using FagdagCqrs.Backend.Data.Models;
 
-namespace FagdagCqrs.Backend.Data
+namespace FagdagCqrs.Backend.Data.Internal
 {
     public class Database
     {
         private static Database _instance;
 
-        public Dictionary<Guid, RoomBooking> RoomBookings { get; private set; }
+        public Dictionary<Guid, RoomBookingInternal> RoomBookings { get; private set; }
         public Dictionary<RoomType, RoomTypeDefinition> RoomTypeDefinions { get; private set; }
 
         public static Database Instance()
@@ -24,7 +24,7 @@ namespace FagdagCqrs.Backend.Data
 
         private Database()
         {
-            RoomBookings = new Dictionary<Guid, RoomBooking>();
+            RoomBookings = new Dictionary<Guid, RoomBookingInternal>();
 
             RoomTypeDefinions = new Dictionary<RoomType, RoomTypeDefinition>();
             AddRoomTypeDefinition(RoomType.Shared, 280.0m);
