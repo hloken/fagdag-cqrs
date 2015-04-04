@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.DataModels;
+using FagdagCqrs.Backend.Data.Models;
 
-namespace FagdagCqrs.Backend.DataAdapters
+namespace FagdagCqrs.Backend.Data
 {
     public class Database
     {

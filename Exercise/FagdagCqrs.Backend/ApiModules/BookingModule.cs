@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.DataAdapters;
-using FagdagCqrs.Backend.DataModels;
+using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.Data.Adapters;
+using FagdagCqrs.Backend.Data.Models;
 using Nancy;
 using Nancy.ModelBinding;
 

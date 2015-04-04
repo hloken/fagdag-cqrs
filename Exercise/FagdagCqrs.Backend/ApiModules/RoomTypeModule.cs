@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.DataAdapters;
+using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.Data.Adapters;
 using Nancy;
 
 namespace FagdagCqrs.Backend.ApiModules
