@@ -21,16 +21,6 @@ namespace FagdagCqrs.Backend.DataModels
         public RoomBookingStatus Status { get; set; }
         public decimal? Price { get; set; }
 
-        public void UpdateFrom(RoomBooking updatedRoomBooking)
-        {
-            Id = updatedRoomBooking.Id;
-            RoomType = updatedRoomBooking.RoomType;
-            FromDate = updatedRoomBooking.FromDate;
-            Duration  = updatedRoomBooking.Duration;
-            Status = updatedRoomBooking.Status;
-            Price = updatedRoomBooking.Price;
-        }
-
         public static RoomBooking Create(Guid roomBookingId, RoomType roomType, DateTime fromDate, int duration)
         {
             return new RoomBooking(roomBookingId, roomType, fromDate, duration);
