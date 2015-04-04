@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
 using FagdagCqrs.Backend.DataAdapters;
+using FagdagCqrs.Backend.DataAdapters.Commands;
+using FagdagCqrs.Backend.DataAdapters.Queries;
 using FagdagCqrs.Backend.DataModels;
 using Nancy;
 using Nancy.ModelBinding;
@@ -11,18 +13,20 @@ namespace FagdagCqrs.Backend.ApiModules
 {
     public class BookingModule : NancyModule
     {
-        private readonly RoomBookingDataAdapter _roomBookingDataAdapter;
+        private readonly RoomBookingCommands _roomBookingCommands;
         private readonly RoomTypeDefinitionDataAdapter _roomTypeDefinitionDataAdapter;
+        private RoomBookingQueries _roomBookingQueries;
 
         public BookingModule()
             : base("api/booking")
         {
-            _roomBookingDataAdapter = new RoomBookingDataAdapter(Database.Instance());
+            _roomBookingCommands = new RoomBookingCommands(Database.Instance());
+            _roomBookingQueries = new RoomBookingQueries(Database.Instance());
             _roomTypeDefinitionDataAdapter = new RoomTypeDefinitionDataAdapter(Database.Instance());
 
             Get[""] = parameters =>
             {
-                var bookings = _roomBookingDataAdapter.ReadAll();
+                var bookings = _roomBookingQueries.ReadAll();
 
                 return Response.AsJson(bookings);
             };
@@ -31,7 +35,7 @@ namespace FagdagCqrs.Backend.ApiModules
             {
                 Guid bookingId = parameters.bookingId;
 
-                var roomBooking = _roomBookingDataAdapter.Read(bookingId);
+                var roomBooking = _roomBookingQueries.Read(bookingId);
                 if (roomBooking != null)
                 {
                     return Response.AsJson(
@@ -49,7 +53,7 @@ namespace FagdagCqrs.Backend.ApiModules
                 var roomBooking = CreateRoomBooking(newBookingId, bookingToCreate);
                 roomBooking.Price = _roomTypeDefinitionDataAdapter.Read(roomBooking.RoomType).PricePerNight * roomBooking.Duration;
 
-                _roomBookingDataAdapter.Create(newBookingId, roomBooking);
+                _roomBookingCommands.Create(newBookingId, roomBooking);
 
                 return Response.AsJson(new IdWrapper(newBookingId));
             };
@@ -74,11 +78,11 @@ namespace FagdagCqrs.Backend.ApiModules
             {
                 Guid bookingId = parameters.bookingId;
 
-                var roomBooking = _roomBookingDataAdapter.Read(bookingId);
+                var roomBooking = _roomBookingQueries.Read(bookingId);
                 if (roomBooking != null)
                 {
                     roomBooking.Status = RoomBookingStatus.ConfirmedByCustomer;
-                    _roomBookingDataAdapter.Update(roomBooking);
+                    _roomBookingCommands.Update(roomBooking);
 
                     return HttpStatusCode.OK;
                 }

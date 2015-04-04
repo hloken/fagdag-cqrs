@@ -82,7 +82,8 @@
     <Compile Include="Contracts\RoomBookingStatus.cs" />
     <Compile Include="Contracts\RoomType.cs" />
     <Compile Include="Contracts\RoomTypeInfo.cs" />
-    <Compile Include="DataAdapters\RoomBookingDataAdapter.cs" />
+    <Compile Include="DataAdapters\Commands\RoomBookingCommands.cs" />
+    <Compile Include="DataAdapters\Queries\RoomBookingQueries.cs" />
     <Compile Include="DataAdapters\RoomTypeDefinitionDataAdapter.cs" />
     <Compile Include="DataModels\RoomBooking.cs" />
     <Compile Include="DataModels\RoomTypeDefinition.cs" />
