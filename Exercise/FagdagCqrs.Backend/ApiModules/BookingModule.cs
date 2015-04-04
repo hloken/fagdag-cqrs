@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.DataAdapters;
-using FagdagCqrs.Backend.DataAdapters.Commands;
-using FagdagCqrs.Backend.DataAdapters.Queries;
-using FagdagCqrs.Backend.DataModels;
+using FagdagCqrs.Backend.Data;
+using FagdagCqrs.Backend.Data.Adapters;
+using FagdagCqrs.Backend.Data.Adapters.Commands;
+using FagdagCqrs.Backend.Data.Adapters.Queries;
+using FagdagCqrs.Backend.Data.Models;
 using Nancy;
 using Nancy.ModelBinding;
 
@@ -14,8 +15,8 @@ namespace FagdagCqrs.Backend.ApiModules
     public class BookingModule : NancyModule
     {
         private readonly RoomBookingCommands _roomBookingCommands;
+        private readonly RoomBookingQueries _roomBookingQueries;
         private readonly RoomTypeDefinitionDataAdapter _roomTypeDefinitionDataAdapter;
-        private RoomBookingQueries _roomBookingQueries;
 
         public BookingModule()
             : base("api/booking")

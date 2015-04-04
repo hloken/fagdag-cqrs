@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using FagdagCqrs.Backend.DataModels;
+using FagdagCqrs.Backend.Data.Models;
 
-namespace FagdagCqrs.Backend.DataAdapters.Queries
+namespace FagdagCqrs.Backend.Data.Adapters.Queries
 {
     public class RoomBookingQueries
     {

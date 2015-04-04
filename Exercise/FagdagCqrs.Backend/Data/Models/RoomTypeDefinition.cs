@@ -1,6 +1,6 @@
-﻿using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Backend.Contracts;
 
-namespace FagdagCqrs.Backend.DataModels
+namespace FagdagCqrs.Backend.Data.Models
 {
     public class RoomTypeDefinition
     {

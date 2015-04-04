@@ -1,7 +1,7 @@
 ﻿using System;
 using FagdagCqrs.Backend.Contracts;
 
-namespace FagdagCqrs.Backend.DataModels
+namespace FagdagCqrs.Backend.Data.Models
 {
     public class RoomBooking
     {
