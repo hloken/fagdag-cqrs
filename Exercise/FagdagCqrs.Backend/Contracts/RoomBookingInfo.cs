@@ -1,4 +1,5 @@
 ﻿using System;
+using FagdagCqrs.Database.Contracts;
 
 namespace FagdagCqrs.Backend.Contracts
 {

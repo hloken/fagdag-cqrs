@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Data;
 using FagdagCqrs.Backend.Data.Adapters;
 using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Database.Contracts;
+using FagdagCqrs.Database.Data;
 using Nancy;
 using Nancy.ModelBinding;
 
@@ -18,8 +17,8 @@ namespace FagdagCqrs.Backend.ApiModules
         public BookingModule()
             : base("api/booking")
         {
-            _roomBookingDataAdapter = new RoomBookingDataAdapter(Database.Instance());
-            _roomTypeDefinitionDataAdapter = new RoomTypeDefinitionDataAdapter(Database.Instance());
+            _roomBookingDataAdapter = new RoomBookingDataAdapter(TheDatabase.Instance());
+            _roomTypeDefinitionDataAdapter = new RoomTypeDefinitionDataAdapter(TheDatabase.Instance());
 
             Get[""] = parameters =>
             {
@@ -45,32 +44,18 @@ namespace FagdagCqrs.Backend.ApiModules
             Post[""] = parameters =>
             {
                 var bookingToCreate = this.Bind<RoomBookingInfo>();
+                var roomBooking = MapToRoomBooking(bookingToCreate);
 
                 var newBookingId = Guid.NewGuid();
-                var roomBooking = CreateRoomBooking(newBookingId, bookingToCreate);
+                roomBooking.Id = newBookingId;
                 roomBooking.Price = _roomTypeDefinitionDataAdapter.Read(roomBooking.RoomType).PricePerNight * roomBooking.Duration;
+                roomBooking.Status = RoomBookingStatus.Draft;
 
-                _roomBookingDataAdapter.Create(newBookingId, roomBooking);
+                _roomBookingDataAdapter.Create(roomBooking);
 
                 return Response.AsJson(new IdWrapper(newBookingId));
             };
-
-            Get["/bookingStatusTypes"] = parameters =>
-            {
-                var bookingStatusDictionary = GetEnumDictionary<RoomBookingStatus>();
-
-                var bookingStatusTypes =
-                    (from kvp in bookingStatusDictionary
-                     select new BookingStatusType
-                     {
-                         Id = kvp.Key,
-                         Title = kvp.Value
-                     })
-                     .ToArray();
-
-                return Response.AsJson(bookingStatusTypes);
-            };
-
+            
             Put["/{bookingId}/confirm"] = parameters =>
             {
                 Guid bookingId = parameters.bookingId;
@@ -87,18 +72,11 @@ namespace FagdagCqrs.Backend.ApiModules
                 return HttpStatusCode.NotFound;
             };
         }
-
-        private static Dictionary<int, string> GetEnumDictionary<T>()
+        
+        private static RoomBooking MapToRoomBooking(RoomBookingInfo roomBookingToCreate)
         {
-            return (Enum.GetValues(typeof(T)).Cast<T>()).ToDictionary(
-                item => Convert.ToInt32(item),
-                item => item.ToString());
-        }
-
-        private static RoomBooking CreateRoomBooking(Guid roomBookingId, RoomBookingInfo roomBookingToCreate)
-        {
-            var roomBooking = RoomBooking.Create(
-                roomBookingId, 
+            var roomBooking = new RoomBooking(
+                roomBookingToCreate.Id ?? Guid.Empty, 
                 roomBookingToCreate.RoomType, 
                 roomBookingToCreate.FromDate,
                 roomBookingToCreate.Duration);

@@ -1,5 +1,6 @@
 ﻿using System;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Database.Contracts;
 using FagdagCqrs.Tests.Bdd;
 using FagdagCqrs.Tests.Drivers;
 using FluentAssertions;

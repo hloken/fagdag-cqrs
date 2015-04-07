@@ -2,28 +2,31 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Database.Data;
 
 namespace FagdagCqrs.Backend.Data.Adapters
 {
     public class RoomBookingDataAdapter
     {
-        private readonly Database _database;
+        private readonly TheDatabase _database;
 
-        public RoomBookingDataAdapter(Database database)
+        public RoomBookingDataAdapter(TheDatabase database)
         {
             _database = database;
         }
 
-        public void Create(Guid bookingId, RoomBooking roomBookingToCreate)
+        public void Create(RoomBooking roomBookingToCreate)
         {
-            _database.RoomBookings.Add(bookingId, roomBookingToCreate);
+            var newBookingRow = MapToRoomBookingRow(roomBookingToCreate);
+            
+            _database.RoomBookingRows.Add(newBookingRow.Id, newBookingRow);
         }
 
         public RoomBooking Read(Guid bookingId)
         {
-            if (_database.RoomBookings.ContainsKey(bookingId))
+            if (_database.RoomBookingRows.ContainsKey(bookingId))
             {
-                return _database.RoomBookings[bookingId];
+                return MapToRoomBooking(_database.RoomBookingRows[bookingId]);
             }
 
             return null;
@@ -31,8 +34,8 @@ namespace FagdagCqrs.Backend.Data.Adapters
 
         public ReadOnlyCollection<RoomBooking> ReadAll()
         {
-            var roomBookings = (from roomBooking in _database.RoomBookings.Values
-                select roomBooking);
+            var roomBookings = (from roomBookingRow in _database.RoomBookingRows.Values
+                                select MapToRoomBooking(roomBookingRow));
 
             return new ReadOnlyCollection<RoomBooking>(roomBookings.ToArray());
         }
@@ -41,12 +44,36 @@ namespace FagdagCqrs.Backend.Data.Adapters
         {
             var updateBookingId = updatedRoomBooking.Id;
 
-            if (_database.RoomBookings.ContainsKey(updateBookingId))
+            if (_database.RoomBookingRows.ContainsKey(updateBookingId))
             {
-                _database.RoomBookings.Remove(updateBookingId);
+                _database.RoomBookingRows.Remove(updateBookingId);
             }
 
-            _database.RoomBookings[updateBookingId] = updatedRoomBooking;
+            _database.RoomBookingRows[updateBookingId] = MapToRoomBookingRow(updatedRoomBooking);
+        }
+
+        private static RoomBookingRow MapToRoomBookingRow(RoomBooking roomBooking)
+        {
+            return new RoomBookingRow(
+                roomBooking.Id,
+                roomBooking.RoomType,
+                roomBooking.FromDate,
+                roomBooking.Duration,
+                roomBooking.Price,
+                roomBooking.Status
+                );
+        }
+
+        private static RoomBooking MapToRoomBooking(RoomBookingRow roomBookingRow)
+        {
+            return new RoomBooking(
+                roomBookingRow.Id,
+                roomBookingRow.RoomType,
+                roomBookingRow.FromDate,
+                roomBookingRow.Duration,
+                roomBookingRow.Price,
+                roomBookingRow.Status);
+
         }
     }
 }

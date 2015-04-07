@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Database.Contracts;
 using FluentAssertions;
 using Nancy.Testing;
 

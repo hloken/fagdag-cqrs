@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Linq;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Database.Contracts;
 using FagdagCqrs.Specs.Arguments;
 
 namespace FagdagCqrs.Specs.Drivers

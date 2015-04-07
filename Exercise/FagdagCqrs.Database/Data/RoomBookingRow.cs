@@ -1,12 +1,11 @@
 ﻿using System;
 using FagdagCqrs.Database.Contracts;
 
-namespace FagdagCqrs.Backend.Data.Models
+namespace FagdagCqrs.Database.Data
 {
-    public class RoomBooking
+    public class RoomBookingRow
     {
-        public RoomBooking(Guid id, RoomType roomType, DateTime fromDate, int duration,
-            decimal? price = null, RoomBookingStatus status = RoomBookingStatus.Draft)
+        public RoomBookingRow(Guid id, RoomType roomType, DateTime fromDate, int duration, decimal? price, RoomBookingStatus status)
         {
             Id = id;
             RoomType = roomType;

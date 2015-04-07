@@ -1,32 +1,31 @@
 using System;
 using System.Collections.Generic;
-using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Database.Contracts;
 
-namespace FagdagCqrs.Backend.Data
+namespace FagdagCqrs.Database.Data
 {
-    public class Database
+    public class TheDatabase
     {
-        private static Database _instance;
+        private static TheDatabase _instance;
 
-        public Dictionary<Guid, RoomBooking> RoomBookings { get; private set; }
-        public Dictionary<RoomType, RoomTypeDefinition> RoomTypeDefinions { get; private set; }
+        public Dictionary<Guid, RoomBookingRow> RoomBookingRows { get; private set; }
+        public List<RoomTypeDefinitionRow> RoomTypeDefinionsRows { get; private set; }
 
-        public static Database Instance()
+        public static TheDatabase Instance()
         {
             if (_instance == null)
             {
-                _instance = new Database();
+                _instance = new TheDatabase();
             }
 
             return _instance;
         }
 
-        private Database()
+        private TheDatabase()
         {
-            RoomBookings = new Dictionary<Guid, RoomBooking>();
+            RoomBookingRows = new Dictionary<Guid, RoomBookingRow>();
 
-            RoomTypeDefinions = new Dictionary<RoomType, RoomTypeDefinition>();
+            RoomTypeDefinionsRows = new List<RoomTypeDefinitionRow>();
             AddRoomTypeDefinition(RoomType.Shared, 280.0m);
             AddRoomTypeDefinition(RoomType.Single, 540.0m);
             AddRoomTypeDefinition(RoomType.Double, 750.0m);
@@ -38,12 +37,12 @@ namespace FagdagCqrs.Backend.Data
 
         private void AddRoomTypeDefinition(RoomType roomType, decimal pricePerNight)
         {
-            RoomTypeDefinions.Add(roomType, new RoomTypeDefinition(roomType, pricePerNight));
+            RoomTypeDefinionsRows.Add(new RoomTypeDefinitionRow(roomType, pricePerNight));
         }
 
         internal void Drop()
         {
-            RoomBookings.Clear();
+            RoomBookingRows.Clear();
         }
     }
 }

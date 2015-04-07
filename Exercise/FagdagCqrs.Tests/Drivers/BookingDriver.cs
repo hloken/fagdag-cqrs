@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Database.Contracts;
 using FluentAssertions;
 using Nancy.Testing;
 
@@ -30,12 +31,6 @@ namespace FagdagCqrs.Tests.Drivers
         public static RoomBookingInfo[] GetAll(Browser browser)
         {
             return browser.Get(_baseUrl).Body.DeserializeJson<RoomBookingInfo[]>();
-        }
-
-        public static BookingStatusType[] GetBookingStatusTypes(Browser browser)
-        {
-            const string url = _baseUrl + "/bookingStatusTypes";
-            return browser.Get(url).Body.DeserializeJson<BookingStatusType[]>();
         }
 
         public static BrowserResponse ConfirmBookingWithResponse(Browser browser, Guid bookingId)

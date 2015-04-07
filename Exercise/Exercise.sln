@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Web", "FagdagCqr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Tests", "FagdagCqrs.Tests\FagdagCqrs.Tests.csproj", "{C37424B6-FD2D-4793-8284-8BB2386605D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FagdagCqrs.Database", "FagdagCqrs.Database\FagdagCqrs.Database.csproj", "{7A4D79F1-94C2-47E3-ACDD-816912E56223}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C37424B6-FD2D-4793-8284-8BB2386605D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A4D79F1-94C2-47E3-ACDD-816912E56223}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A4D79F1-94C2-47E3-ACDD-816912E56223}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A4D79F1-94C2-47E3-ACDD-816912E56223}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A4D79F1-94C2-47E3-ACDD-816912E56223}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
