@@ -58,18 +58,18 @@ Currently room-booking has a unified CRUD'ish data model as can be seen in Fagda
 2. Using Resharper, move RoomBookingDataAdapter to the new created Commands namespace and rename it to RoomBookingCommands.
 3. Create a new class "RoomBookingQueries" in the Queries namespace.
 4. Move Read() and ReadAll() methods from RoomBookingCommands to RoomBookingQueries.
-5. Get RoomBookingQueries to compile by adding a field _database and constructor that initializes it.
+5. Get RoomBookingQueries to compile by adding a field _database and constructor that initializes it (similar to RoomBookingCommands).
 6. In BookingModule, add a readonly field for RoomBookingQueries and initialize in a similar way to RoomBookingCommands.
 7. Ensure that calls to Read and ReadAll now call the instance of RoomBookingQueries.
 
 We have now separated the room booking-related logic for querying and applying commands to the persistence layer but they still share internal and external contracts. If you run the RestAPI integration-tests and SpecFlow tests they should be green. Let's continue by separating the internal contracts.
 
 8. In the Data/Models folder create a Commands and Queries folder.
-9. Using Resharper, move the RoomBooking model to the Models/Commands folder.
-10. In the Models/Queries folder, create a new class representing the RoomBooking read model. Give it a good name, I can't think of one right now so I'll call it RoomBooking. :-) 
-11. Looking at the RoomBooking fields used in the web client, copy from the old RoomBooking model (now the write model) the minimum number of fields required for the RoomBooking read-model to work, since the read-model is completely separate from the write-model we don't need all the fields used for commands.
+9. Using Resharper, move the RoomBooking model to the Models/Queries folder.
+10. In the Models/Commands folder, create a new class representing the RoomBooking read model. Give it a good name, I can't think of one right now so I'll call it RoomBooking. :-) 
+11. Looking at the RoomBooking fields used in the web client, copy from the old RoomBooking model (now the read model) the minimum number of fields required for the RoomBooking write-model to work, since the read-model is completely separate from the write-model we don't need all the fields used for queries.
 (Hint: find out where the BookingModule Get-methods is used in the client, they are called from the App/Booking/bookingService.js)
-(Hint 2: you need the Id, RoomType, FromDate, Duration, Price and Status)
+(Hint 2: you need all of them :-)
 12. In RoomBookingQueries, repleace all references to Commands/RoomBooking with the new Queries/Roombooking model and do the mapping required to get it to compile.
 
 Compile and notice that all the errors now appear in the BookingModule. Mostly this is because our external contracts is the same for commands and queries. 
