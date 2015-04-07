@@ -6,6 +6,7 @@ Exercises
 * VS2013
 * SpecFlow for Visual Studio 2013 extension - in VS2013 open Tools->Extensions and Updates, search for Specflow and install "SpecFlow for Visual Studio 2013"
 * Node - browse to https://nodejs.org/ and select install or download
+* Pull latest (origin/master): https://github.com/hloken/fagdag-cqrs
 
 Project:
 	Nuget packages: uses VS2013 integrated package restore, should work automagically on first build
@@ -22,14 +23,17 @@ Project:
 ** Introduction to the code base - may skip to Exercises and use this as reference **
 
 4 projects in solution: 
-	FagdagCqrs.BackEnd - Self-hosted Nancy based RestAPI and Persistence layer (currently in-memory). 
+
+	FagdagCqrs.BackEnd - Self-hosted Nancy based RestAPI and business logic. 
 		Namespaces:
-			* ApiModules - Nancy modules implementing Rest API
+			* ApiModules - Nancy modules implementing Rest API + business-logic
 			* Contracts - Contracts JSON serialization
-			* Data/Adapters - Persistence layer logic
-			* Data/Models - Models used for quuery/commands with the persistence layer 
+			* Data/Adapters - Data-adapters used for applying query/commands to the database
+			* Data/Models - Models used for applying query/commands with the database
 
 	FagdagCqrs.Web - Nancy-based web-site hosted in local IIS. Uses Bower for client-side dependencies and grunt for tooling (mostly injection of js-files at the  moment). Mostly static files, App-folder contains Angular.js based SPA for frontend
+
+	FagdagCqrs.Database - in-memory, database representation, in a normal project this would not be code but schema-definitions + running processes so *not intended for modification in this exercise*
 
 	FagdagCqrs.Tests - integration-tests for RestAPI. Runs against in-process instance of Nancy-Modules so fast!
 		Namespaces:
@@ -46,11 +50,11 @@ Project:
 			* Pages - abstraction for a web page, uses AngularBindingAdapter to be less brittle
 			* AngularBindingAdapter - abstractions for Angular model bindings and directives
 
-Exercise 1 - separate data models for room booking queries and commands
+Exercise 1 - separate queries and commands for room booking user story
 
-Currently room-booking has a unified CRUD'ish data model as can be seen in FagdagCqrs.Backend's Data/Adapters/RoomBookingDataAdapter and Data/Models/RoomBooking. Let's split it into separate models for commands and queries, at the same time moving towards thinking in queries and commands instead of read and writes.
+Currently room-booking has a unified CRUD'ish data model as can be seen in FagdagCqrs.Backend's Data/Adapters/RoomBookingDataAdapter and Data/Models/RoomBooking. Let's split it into separate data models for commands and queries, at the same time moving towards thinking in queries and commands instead of read and writes.
 
-1. Under Data/Adapters, create a folder/namespace "Queries" and a folder/namespace "Commands".
+1. In Data/Adapters, create a folder/namespace "Queries" and a folder/namespace "Commands".
 2. Using Resharper, move RoomBookingDataAdapter to the new created Commands namespace and rename it to RoomBookingCommands.
 3. Create a new class "RoomBookingQueries" in the Queries namespace.
 4. Move Read() and ReadAll() methods from RoomBookingCommands to RoomBookingQueries.
