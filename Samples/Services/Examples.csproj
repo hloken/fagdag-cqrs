@@ -45,10 +45,6 @@
     <Compile Include="Append only models Example\2. AppendOnlyCommandHandler.cs" />
     <Compile Include="Append only models Example\1. CommandHandler.cs" />
     <Compile Include="Append only models Example\Stuff.cs" />
-    <Compile Include="Cruft\ICustomer.cs" />
-    <Compile Include="Cruft\ICustomerDetails.cs" />
-    <Compile Include="Cruft\ICustomerSet.cs" />
-    <Compile Include="Cruft\Locale.cs" />
     <Compile Include="Cruft\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
