@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Contracts.Commands;
+using FagdagCqrs.Backend.Contracts.Queries;
+using FagdagCqrs.Database.Contracts;
 using FagdagCqrs.Specs.Arguments;
 
 namespace FagdagCqrs.Specs.Drivers
@@ -16,12 +16,12 @@ namespace FagdagCqrs.Specs.Drivers
             _client = client;
         }
 
-        public RoomBookingCommand FindBookingBy(RomType romType, DateTime fromDate, int duration)
+        public RoomBookingInfo FindBookingBy(RomType romType, DateTime fromDate, int duration)
         {
-            RoomBookingCommand[] roomBookingCommands = _client.Get("api/booking", true).ToObject<RoomBookingCommand[]>();
+            RoomBookingInfo[] roomBookingInfos = _client.Get("api/booking").ToObject<RoomBookingInfo[]>();
 
             var firstMatchingBooking =
-                roomBookingCommands.First(roomBookingInfo => roomBookingInfo.RoomType == GetRoomTypeFromRomType(romType) &&
+                roomBookingInfos.First(roomBookingInfo => roomBookingInfo.RoomType == GetRoomTypeFromRomType(romType) &&
                                                           roomBookingInfo.FromDate.Date == fromDate.Date &&
                                                           roomBookingInfo.Duration == duration);
 

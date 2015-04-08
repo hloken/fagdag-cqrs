@@ -1,32 +1,41 @@
-using System.Collections.ObjectModel;
-using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Data.Internal;
+using System.Collections.Generic;
+using System.Linq;
 using FagdagCqrs.Backend.Data.Models;
+using FagdagCqrs.Database.Contracts;
+using FagdagCqrs.Database.Data;
 
 namespace FagdagCqrs.Backend.Data.Adapters
 {
     public class RoomTypeDefinitionDataAdapter
     {
-        private readonly Database _database;
+        private readonly TheDatabase _database;
 
-        public RoomTypeDefinitionDataAdapter(Database database)
+        public RoomTypeDefinitionDataAdapter(TheDatabase database)
         {
             _database = database;
         }
 
         public RoomTypeDefinition Read(RoomType roomType)
         {
-            if (_database.RoomTypeDefinions.ContainsKey(roomType))
-            {
-                return _database.RoomTypeDefinions[roomType];
-            }
-
-            return null;
+            var roomTypeDefinition = (from row in _database.RoomTypeDefinionsRows
+                                      where row.RoomType == roomType
+                                      select MapToRoomTypeDefinition(row))
+                                    .SingleOrDefault();
+            return roomTypeDefinition;
         }
 
-        public ReadOnlyDictionary<RoomType, RoomTypeDefinition> ReadAll()
+        public IEnumerable<RoomTypeDefinition> ReadAll()
         {
-            return new ReadOnlyDictionary<RoomType, RoomTypeDefinition>(_database.RoomTypeDefinions);
+            var roomTypeDefinitions = (from row in _database.RoomTypeDefinionsRows
+                select MapToRoomTypeDefinition(row))
+                .ToList();
+
+            return roomTypeDefinitions.AsReadOnly();
+        }
+
+        private static RoomTypeDefinition MapToRoomTypeDefinition(RoomTypeDefinitionRow roomTypeDefinionRow)
+        {
+            return new RoomTypeDefinition(roomTypeDefinionRow.RoomType, roomTypeDefinionRow.PricePerNight);
         }
     }
 }

@@ -61,12 +61,13 @@
     <Compile Include="Bdd\BddTestBase.cs" />
     <Compile Include="Bdd\ThenAttribute.cs" />
     <Compile Include="Drivers\BookingDriver.cs" />
+    <Compile Include="Drivers\BookingStatusTypesDriver.cs" />
     <Compile Include="Drivers\RoomTypeDriver.cs" />
     <Compile Include="Drivers\TestingDriver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestApi\BookingStatusTypes\RetrievingBookingStatusTypes.cs" />
     <Compile Include="RestApi\Booking\ConfirmBooking.cs" />
     <Compile Include="RestApi\Booking\CreatingBooking.cs" />
-    <Compile Include="RestApi\Booking\RetrievingBookingStatusTypes.cs" />
     <Compile Include="RestApi\Booking\RetrievingAllBookings.cs" />
     <Compile Include="RestApi\RestApiBddTestBase.cs" />
     <Compile Include="RestApi\Room\RetrieveRoomTypes.cs" />
@@ -79,6 +80,10 @@
     <ProjectReference Include="..\FagdagCqrs.Backend\FagdagCqrs.Backend.csproj">
       <Project>{35460aa4-b94a-4b64-9418-7243ec3d2f01}</Project>
       <Name>FagdagCqrs.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FagdagCqrs.Database\FagdagCqrs.Database.csproj">
+      <Project>{7A4D79F1-94C2-47E3-ACDD-816912E56223}</Project>
+      <Name>FagdagCqrs.Database</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

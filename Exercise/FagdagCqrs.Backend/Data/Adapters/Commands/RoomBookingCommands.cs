@@ -1,47 +1,35 @@
-﻿using System;
-using FagdagCqrs.Backend.Contracts;
-using FagdagCqrs.Backend.Data.Internal;
-using FagdagCqrs.Backend.Data.Models.Commands;
+using System;
+using FagdagCqrs.Database.Contracts;
+using FagdagCqrs.Database.Data;
 
 namespace FagdagCqrs.Backend.Data.Adapters.Commands
 {
     public class RoomBookingCommands
     {
-        private readonly Database _database;
+        private readonly TheDatabase _database;
 
-        public RoomBookingCommands(Database database)
+        public RoomBookingCommands(TheDatabase database)
         {
             _database = database;
         }
 
-        public void Create(Guid bookingId, RoomBooking roomBookingToCreate)
+        public void Create(Guid bookingId, RoomType roomType, DateTime fromDate, int duration, decimal? price)
         {
-            var roomBookingInternal = CreateRoomBooking(bookingId, roomBookingToCreate);
-            _database.RoomBookings.Add(bookingId, roomBookingInternal);
+            var newBookingRow = new RoomBookingRow(bookingId, roomType, fromDate, duration, price, RoomBookingStatus.Draft);
+            
+            _database.RoomBookingRows.Add(newBookingRow.Id, newBookingRow);
         }
 
-        public bool ConfirmBooking(Guid confirmBookingId)
+        public bool ConfirmBooking(Guid bookingId)
         {
-            if (_database.RoomBookings.ContainsKey(confirmBookingId))
+            if (_database.RoomBookingRows.ContainsKey(bookingId))
             {
-                _database.RoomBookings[confirmBookingId].Status = RoomBookingStatus.ConfirmedByCustomer;
+                _database.RoomBookingRows[bookingId].Status = RoomBookingStatus.ConfirmedByCustomer;
 
                 return true;
             }
 
             return false;
-        }
-
-        private static RoomBookingInternal CreateRoomBooking(Guid roomBookingId, RoomBooking roomBookingToCreate)
-        {
-            var roomBooking = RoomBookingInternal.Create(
-                roomBookingId,
-                roomBookingToCreate.RoomType,
-                roomBookingToCreate.FromDate,
-                roomBookingToCreate.Duration,
-                roomBookingToCreate.Price);
-
-            return roomBooking;
         }
     }
 }

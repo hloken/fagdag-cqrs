@@ -1,18 +1,19 @@
-﻿using System;
-using FagdagCqrs.Backend.Contracts;
+using System;
+using FagdagCqrs.Database.Contracts;
 
 namespace FagdagCqrs.Backend.Data.Models.Queries
 {
     public class RoomBooking
     {
-        public RoomBooking(Guid id, RoomType roomType, DateTime fromDate, int duration, RoomBookingStatus status, decimal? price)
+        public RoomBooking(Guid id, RoomType roomType, DateTime fromDate, int duration,
+            decimal? price, RoomBookingStatus status)
         {
             Id = id;
             RoomType = roomType;
             FromDate = fromDate;
             Duration = duration;
-            Status = status;
             Price = price;
+            Status = status;
         }
 
         public Guid Id { get; set; }

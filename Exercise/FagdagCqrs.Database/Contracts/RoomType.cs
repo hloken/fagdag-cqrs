@@ -1,4 +1,4 @@
-namespace FagdagCqrs.Backend.Contracts
+namespace FagdagCqrs.Database.Contracts
 {
     public enum RoomType
     {

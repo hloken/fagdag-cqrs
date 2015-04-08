@@ -138,6 +138,10 @@
       <Project>{35460aa4-b94a-4b64-9418-7243ec3d2f01}</Project>
       <Name>FagdagCqrs.Backend</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FagdagCqrs.Database\FagdagCqrs.Database.csproj">
+      <Project>{7A4D79F1-94C2-47E3-ACDD-816912E56223}</Project>
+      <Name>FagdagCqrs.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

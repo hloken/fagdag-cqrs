@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
-using FagdagCqrs.Backend.Data.Internal;
 using FagdagCqrs.Backend.Data.Models.Queries;
+using FagdagCqrs.Database.Data;
 
 namespace FagdagCqrs.Backend.Data.Adapters.Queries
 {
     public class RoomBookingQueries
     {
-        private readonly Database _database;
+        private readonly TheDatabase _database;
 
-        public RoomBookingQueries(Database database)
+        public RoomBookingQueries(TheDatabase database)
         {
             _database = database;
         }
 
         public RoomBooking Read(Guid bookingId)
         {
-            if (_database.RoomBookings.ContainsKey(bookingId))
+            if (_database.RoomBookingRows.ContainsKey(bookingId))
             {
-                var rb = _database.RoomBookings[bookingId];
-                return CreateQueriesRoomBooking(rb);
+                return MapToRoomBooking(_database.RoomBookingRows[bookingId]);
             }
 
             return null;
@@ -28,22 +27,22 @@ namespace FagdagCqrs.Backend.Data.Adapters.Queries
 
         public ReadOnlyCollection<RoomBooking> ReadAll()
         {
-            var roomBookings = (from rb in _database.RoomBookings.Values
-                                select CreateQueriesRoomBooking(rb));
+            var roomBookings = (from roomBookingRow in _database.RoomBookingRows.Values
+                                select MapToRoomBooking(roomBookingRow));
 
             return new ReadOnlyCollection<RoomBooking>(roomBookings.ToArray());
         }
 
-        private static RoomBooking CreateQueriesRoomBooking(RoomBookingInternal rb)
+        private static RoomBooking MapToRoomBooking(RoomBookingRow roomBookingRow)
         {
             return new RoomBooking(
-                rb.Id,
-                rb.RoomType,
-                rb.FromDate,
-                rb.Duration,
-                rb.Status,
-                rb.Price
-                );
+                roomBookingRow.Id,
+                roomBookingRow.RoomType,
+                roomBookingRow.FromDate,
+                roomBookingRow.Duration,
+                roomBookingRow.Price,
+                roomBookingRow.Status);
+
         }
     }
 }

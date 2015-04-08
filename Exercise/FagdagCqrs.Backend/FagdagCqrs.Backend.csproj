@@ -71,31 +71,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiModules\BookingModule.cs" />
+    <Compile Include="ApiModules\BookingStatusTypesModule.cs" />
     <Compile Include="ApiModules\RoomTypeModule.cs" />
     <Compile Include="ApiModules\TestingModule.cs" />
     <Compile Include="Bootstrapping\Bootstrapper.cs" />
     <Compile Include="Bootstrapping\FagdagCqrsCorsProvider.cs" />
     <Compile Include="Bootstrapping\Startup.cs" />
     <Compile Include="Contracts\BookingStatusType.cs" />
-    <Compile Include="Contracts\Commands\RoomBookingCommand.cs" />
+    <Compile Include="Contracts\Commands\CreateRoomBooking.cs" />
     <Compile Include="Contracts\IdWrapper.cs" />
     <Compile Include="Contracts\Queries\RoomBookingInfo.cs" />
-    <Compile Include="Contracts\RoomBookingStatus.cs" />
-    <Compile Include="Contracts\RoomType.cs" />
     <Compile Include="Contracts\RoomTypeInfo.cs" />
+    <Compile Include="ConsoleHost.cs" />
     <Compile Include="Data\Adapters\Commands\RoomBookingCommands.cs" />
     <Compile Include="Data\Adapters\Queries\RoomBookingQueries.cs" />
-    <Compile Include="ConsoleHost.cs" />
     <Compile Include="Data\Adapters\RoomTypeDefinitionDataAdapter.cs" />
-    <Compile Include="Data\Internal\Database.cs" />
-    <Compile Include="Data\Internal\RoomBookingInternal.cs" />
-    <Compile Include="Data\Models\Commands\RoomBooking.cs" />
     <Compile Include="Data\Models\Queries\RoomBooking.cs" />
     <Compile Include="Data\Models\RoomTypeDefinition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FagdagCqrs.Database\FagdagCqrs.Database.csproj">
+      <Project>{7A4D79F1-94C2-47E3-ACDD-816912E56223}</Project>
+      <Name>FagdagCqrs.Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

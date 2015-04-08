@@ -1,10 +1,10 @@
 using FagdagCqrs.Database.Contracts;
 
-namespace FagdagCqrs.Backend.Data.Models
+namespace FagdagCqrs.Database.Data
 {
-    public class RoomTypeDefinition
+    public class RoomTypeDefinitionRow
     {
-        public RoomTypeDefinition(RoomType roomType, decimal pricePerNight)
+        public RoomTypeDefinitionRow(RoomType roomType, decimal pricePerNight)
         {
             RoomType = roomType;
             PricePerNight = pricePerNight;

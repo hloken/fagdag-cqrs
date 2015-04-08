@@ -1,10 +1,25 @@
-﻿using System;
+using System;
+using FagdagCqrs.Database.Contracts;
 
 namespace FagdagCqrs.Backend.Contracts.Queries
 {
     public class RoomBookingInfo
     {
-        public Guid Id { get; set; }
+        // Needed by Nancy Bind<>
+        public RoomBookingInfo()
+        {
+        }
+
+        public RoomBookingInfo(Guid? id, RoomType roomType, DateTime fromDate, int duration, decimal? price = null)
+        {
+            Id = id;
+            RoomType = roomType;
+            FromDate = fromDate;
+            Duration = duration;
+            Price = price;
+        }
+
+        public Guid? Id { get; set; }
         public RoomType RoomType { get; set; }
         public DateTime FromDate { get; set; }
         public int Duration { get; set; }

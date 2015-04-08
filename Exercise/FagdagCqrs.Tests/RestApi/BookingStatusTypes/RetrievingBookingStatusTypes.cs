@@ -1,8 +1,9 @@
 ﻿using FagdagCqrs.Backend.Contracts;
+using FagdagCqrs.Database.Contracts;
 using FagdagCqrs.Tests.Bdd;
 using FagdagCqrs.Tests.Drivers;
 
-namespace FagdagCqrs.Tests.RestApi.Booking
+namespace FagdagCqrs.Tests.RestApi.BookingStatusTypes
 {
     public class RetrievingBookingStatusTypes : RestApiBddTestBase
     {
@@ -14,7 +15,7 @@ namespace FagdagCqrs.Tests.RestApi.Booking
 
         protected override void When()
         {
-            _retrievedBookingStatusTypes = BookingDriver.GetBookingStatusTypes(Browser);
+            _retrievedBookingStatusTypes = BookingStatusTypesDriver.GetBookingStatusTypes(Browser);
         }
 
         [Then]
