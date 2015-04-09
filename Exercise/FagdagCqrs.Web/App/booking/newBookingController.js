@@ -22,7 +22,7 @@ angular.module('fagdagCqrsHotel').controller('NewBookingController', ['$scope', 
             bookingService.createBooking($scope.newBooking)
                 .then(function (result) {
                     var bookingId = result.data.id;
-                    var url = '/booking/new/' + bookingId + '/confirmation';
+                    var url = '/booking/' + bookingId + '/confirmation';
                     $location.url(url);
                 });
             

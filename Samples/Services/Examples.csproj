@@ -42,9 +42,21 @@
     <Compile Include="1. Single data model example\2. CqsPersonDataStore.cs" />
     <Compile Include="2. Cqrs data models Example\Cqrs Datastores.cs" />
     <Compile Include="1. Single data model example\1. CrudPersonDataStore.cs" />
-    <Compile Include="Append only models Example\2. AppendOnlyCommandHandler.cs" />
-    <Compile Include="Append only models Example\1. CommandHandler.cs" />
-    <Compile Include="Append only models Example\Stuff.cs" />
+    <Compile Include="3. Append only models Example\2. AppendOnlyCommandHandler.cs" />
+    <Compile Include="3. Append only models Example\1. CommandHandler.cs" />
+    <Compile Include="3. Append only models Example\Stuff.cs" />
+    <Compile Include="4. Real world example\1. Before\CreateUnionDuesHandler.cs" />
+    <Compile Include="4. Real world example\1. Before\UpdateUnionDuesHandler.cs" />
+    <Compile Include="4. Real world example\2. After\Commands\CreateUnionDuesHandler.cs" />
+    <Compile Include="4. Real world example\2. After\Commands\SalaryCalculationDbContext.cs" />
+    <Compile Include="4. Real world example\2. After\Commands\UnionDues.cs" />
+    <Compile Include="4. Real world example\2. After\Commands\UpdateUnionDuesHandler.cs" />
+    <Compile Include="4. Real world example\2. After\Queries\Union.cs" />
+    <Compile Include="4. Real world example\2. After\Queries\UnionQueries.cs" />
+    <Compile Include="4. Real world example\2. After\UnionModule.cs" />
+    <Compile Include="4. Real world example\1. Before\PayrollDbContext.cs" />
+    <Compile Include="4. Real world example\1. Before\UnionDues.cs" />
+    <Compile Include="4. Real world example\1. Before\UnionModule.cs" />
     <Compile Include="Cruft\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
